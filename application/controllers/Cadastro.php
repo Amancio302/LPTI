@@ -52,13 +52,14 @@
 		public function editor($id){
 			$this->db->where('idUSUARIO', $id);
 			$data['USUARIO'] = $this->db->get('USUARIO')->result();
-			$this->load->view('editor', $data);
+			$data['url'] = base_url();
+			$this->parser->parse('editor', $data);
 		}
 
 		public function excluir($id){
 			$this->db->where('idUSUARIO', $id);
 			if($this->db->delete('USUARIO')){
-				redirect('cadastro/editar');
+				redirect('Login/loginAsAdm');
 			}
 		}
 
