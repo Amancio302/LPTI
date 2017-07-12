@@ -1,29 +1,79 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Editar Usuário</title>
-        <link href="{url}assets/css/estilo.css" rel="stylesheet">
-		<link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
-	</head>
-	<body>
-		<?php
-			foreach($USUARIO as $band){
-				echo "Login: " . $band->LOGIN.br().
-					 "Tipo: " . $band->TIPO_USUARIO .br();
-				$atributos = array('name'=>'formulario_editar', 'id'=>'formulario_editar');
-				 echo form_open('cadastro/editor/'. $band->idUSUARIO, $atributos).
-				 	  form_submit("btn_editor", "Editar", "login loginmodal-submit").
-					  form_close();
-				$atributos = array('name'=>'formulario_editar', 'id'=>'formulario_editar');
-				echo form_open('cadastro/excluir/'. $band->idUSUARIO, $atributos).
-				 	  form_submit("btn_excluir", "Excluir", "login loginmodal-submit").
-					  form_close();	 
-			}
-			$atributos = array('name'=>'formulario_voltar', 'id'=>'formulario_voltar');
-			echo form_open('cadastro/inicio', $atributos).
-				 form_submit("btn_editar", "Voltar", "login loginmodal-submit").
-				 form_close();
-		?>
-	</body>
+<html lang="en">
+
+<head>
+
+    <title>Editar Usuário</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="alunos" >
+
+    <title>Início</title>
+    <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{url}assets/css/metisMenu.min.css" rel="stylesheet">
+    <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
+    <link href="{url}assets/css/morris.css" rel="stylesheet">
+    <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div id="wrapper">
+			<div id="Main">
+          <div id="page-wrapper">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <h1 class="page-header">Editar Usuário</h1>
+                  </div>
+                  <!-- /.col-lg-12 -->
+              </div>
+              <!-- /.row -->
+              <div class="row">
+  		        	<div class="col-lg-12 col-md-12">
+									<?php
+										foreach($USUARIO as $band){
+											echo "Login: " . $band->LOGIN.br();
+											if($band->TIPO_USUARIO == '1')
+												echo "Tipo: " . "Administrador" .br();
+											else if($band->TIPO_USUARIO == '2')
+												echo "Tipo: " . "Estagiário" .br();
+											else if($band->TIPO_USUARIO == '0')
+												echo "Tipo: " . "Coordenador" .br();
+											echo anchor("Cadastro/editor/".$band->idUSUARIO, " Editar ", 'class="btn btn-primary"').
+													 anchor("Cadastro/excluir/".$band->idUSUARIO, "Excluir ", 'class="btn btn-danger"').br();
+										}
+									?>
+              </div>
+						</div>
+          </div>
+				</div>
+			</div>
+
+
+    <!-- jQuery -->
+    <script src="{url}assets/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{url}assets/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{url}assets/js/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="{url}assets/js/raphael.min.js"></script>
+    <script src="{url}assets/js/morris.min.js"></script>
+    <script src="{url}assets/js/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{url}assets/js/sb-admin-2.js"></script>
+
+		<script>
+			{modal}
+		</script>
+
+</body>
+
 </html>

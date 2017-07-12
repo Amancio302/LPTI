@@ -37,8 +37,8 @@
                 </li>
             </ul>
 
-            <div class="navbar-default sidebar" role="navigation" id="teste">
-                <div class="sidebar-nav navbar-collapse">
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse" id="btn">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
@@ -52,7 +52,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html">Início</a>
+                            <a href="#">Início</a>
                         </li>
                         <li>
                             <a href="#">Lista de Alunos<span class="fa arrow"></span></a>
@@ -116,19 +116,10 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#">Inserir Alunos</a>
-                        </li>
-                        <li>
-                            <a href="#">Notas e Faltas</a>
-                        </li>
-                        <li>
-                            <a href="#">Editar Matérias</a>
-                        </li>
-                        <li>
                             <a href="../Cadastro/cadastrar">Cadastrar usuários</a>
                         </li>
                         <li>
-                            <a href="#">Editar usuários</a>
+                            <a href="../Cadastro/editar">Editar usuários</a>
                         </li>
                     </ul>
                 </div>
@@ -136,7 +127,7 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
+        <div id="Main">
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
@@ -220,10 +211,21 @@
   		                </div>
               </div>
           </div>
+        </div>
+      </div>
 
 
     <!-- jQuery -->
     <script src="{url}assets/js/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(e){
+        $("#btn a").click(function(e){
+          e.preventDefault();
+          var href = $(this).attr('href');
+          $("#Main").load(href + " #Main");
+        });
+      });
+    </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{url}assets/js/bootstrap.min.js"></script>

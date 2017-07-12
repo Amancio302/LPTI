@@ -21,20 +21,18 @@
 			$data['SENHA'] = $this->input->post('txt_senha');
 			$data['TIPO_USUARIO'] = $this->input->post('txt_tipo');
 			$senha = $this->input->post('txt_confirmarsenha');
-			if($data['SENHA'] == $senha){
+			if(!$this->db->where('LOGIN', $data['LOGIN'])){
+			 $data['modal'] = "$(window).on('load',function(){
+							  $('#erro-modal').modal('show');
+							  });";
+			 $data['url'] = base_url();
+			 $this->parser->parse('cadastro', $data);
+			}
+			else if($data['SENHA'] == $senha){
 				$data['SENHA'] = sha1($data['SENHA']);
-				try{
-					$this->db->insert('USUARIO', $data);
-					$data['url'] = base_url();
-					$this->parser->parse('telaAdm', $data);
-				}
-				catch(Exeption $e){
-					$data['modal'] = "$(window).on('load',function(){
-								  $('#erro-modal').modal('show');
-								  });";
+				$this->db->insert('USUARIO', $data);
 				$data['url'] = base_url();
-				 $this->parser->parse('cadastro', $data);
-				}
+				$this->parser->parse('telaAdm', $data);
 			}
 			else{
 				$data['modal'] = "$(window).on('load',function(){
@@ -47,7 +45,8 @@
 
 		public function editar(){
 			$data['USUARIO'] = $this->db->get('USUARIO')->result();
-			$this->load->view('editar', $data);
+			$data['url'] = base_url();
+			$this->parser->parse('editar', $data);
 		}
 
 		public function editor($id){
