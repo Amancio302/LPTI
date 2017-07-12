@@ -1,0 +1,11 @@
+#erro-modal{
+  background-color: white;
+  margin: -100px;
+  margin-top: 0;
+  text-align: center;
+  opacity: 0.75;
+}
+
+#erro-modal li a{
+  text-decoration: none;
+}
