@@ -24,10 +24,13 @@ class Login extends CI_Controller {
 		if(count($data) > 0){
 			$array=array("login"=>true);
 			$this->session->set_userdata($array);
-			if($data[0]['TIPO_USUARIO'] == 1){
-            $this->loginAsAdm();
-			}else if($data[0]['TIPO_USUARIO'] == 2)
-				$this->load->view('telaEst');
+			if($data[0]['TIPO_USUARIO'] == 1)
+          $this->loginAsAdm();
+			else if($data[0]['TIPO_USUARIO'] == 2)
+				$this->loginAsEst();
+			else{
+				$this->loginAsCoord();
+			}
 		}
 		else{
 			$this->session->sess_destroy();
@@ -50,5 +53,17 @@ class Login extends CI_Controller {
 		$this->load->library('session');
 		$data['url'] = base_url();
 		$this->parser->parse('telaAdm', $data);
+	}
+
+	public function loginAsCoord(){
+		$this->load->library('session');
+		$data['url'] = base_url();
+		$this->parser->parse('telaCoord', $data);
+	}
+
+	public function loginAsEst(){
+		$this->load->library('session');
+		$data['url'] = base_url();
+		$this->parser->parse('telaEst', $data);
 	}
 }

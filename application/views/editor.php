@@ -140,7 +140,7 @@
 												<?php
 												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
-												echo form_open('cadastro/cadastro', $atributos).
+												echo form_open('Cadastro/edit', $atributos).
 													 form_hidden('id', $USUARIO[0]->idUSUARIO).
 													 form_label("Login: ", "txt_login").br().
 													 form_input('txt_login', $USUARIO[0]->LOGIN).br().

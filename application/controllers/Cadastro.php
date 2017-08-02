@@ -28,19 +28,8 @@
 			 $data['url'] = base_url();
 			 $this->parser->parse('cadastro', $data);
 			}
-			else if($data['SENHA'] == $senha){
-				$data['SENHA'] = sha1($data['SENHA']);
-				$this->db->insert('USUARIO', $data);
-				$data['url'] = base_url();
-				$this->parser->parse('telaAdm', $data);
-			}
-			else{
-				$data['modal'] = "$(window).on('load',function(){
-							  $('#erro-modal').modal('show');
-							  });";
-			$data['url'] = base_url();
-			 $this->parser->parse('cadastro', $data);
-			}
+			else
+				$this->confere($data, $senha);
 		}
 
 		public function editar(){
@@ -56,6 +45,30 @@
 			$this->parser->parse('editor', $data);
 		}
 
+		//Apresenta Problemas (Falar com professores)
+
+		public function edit(){
+			$data['LOGIN'] = $this->input->post('txt_login');
+			$data['SENHA'] = $this->input->post('txt_senha');
+			$data['TIPO_USUARIO'] = $this->input->post('txt_tipo');
+			$data['idUSUARIO'] = $this->input->post('id');
+			$senha = $this->input->post('txt_confirmarsenha');
+			if($this->db->where('LOGIN', $data['LOGIN'])){
+				$ctr = $this->db->where('LOGIN', $data['LOGIN']);
+				if($ctr['idUSUARIO'] != $data['idUSUARIO']){
+				 $data['modal'] = "$(window).on('load',function(){
+								  $('#erro-modal').modal('show');
+								  });";
+				 $data['url'] = base_url();
+				 $this->parser->parse('cadastro', $data);
+		 		}
+				else
+					$this->confere($data, $senha);
+			}
+			else
+				$this->confere($data, $senha);
+		}
+
 		public function excluir($id){
 			$this->db->where('idUSUARIO', $id);
 			if($this->db->delete('USUARIO')){
@@ -63,7 +76,19 @@
 			}
 		}
 
-		public function inicio(){
-			$this->load->view('telaAdm');
+	public function confere($data, $senha){
+		if($data['SENHA'] == $senha){
+			$data['SENHA'] = sha1($data['SENHA']);
+			$this->db->update('USUARIO', $data);
+			$data['url'] = base_url();
+			$this->parser->parse('telaAdm', $data);
+		}
+		else{
+			$data['modal'] = "$(window).on('load',function(){
+							$('#erro-modal').modal('show');
+							});";
+		$data['url'] = base_url();
+		 $this->parser->parse('cadastro', $data);
 		}
 	}
+}
