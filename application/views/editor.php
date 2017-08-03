@@ -149,7 +149,7 @@
 													 form_label("Confirmar senha: ", "txt_confirmarsenha").br().
 													 form_password('txt_confirmarsenha').br().
 													 form_label("Tipo: ", "txt_tipo").br().
-													 form_input('txt_tipo', $USUARIO[0]->TIPO_USUARIO).br().br().
+													 form_input('txt_tipo', $USUARIO[0]->TIPO).br().br().
 													 form_submit("btn_cadastrar", "Salvar Alterações", $btn).br().
 													 form_close().br().
 											     anchor('../Login/loginAsAdm', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));

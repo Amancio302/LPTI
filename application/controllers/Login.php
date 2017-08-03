@@ -24,12 +24,12 @@ class Login extends CI_Controller {
 		if(count($data) > 0){
 			$array=array("login"=>true);
 			$this->session->set_userdata($array);
-			if($data[0]['TIPO_USUARIO'] == 1)
+			if($data[0]['TIPO'] == 1)
           $this->loginAsAdm();
-			else if($data[0]['TIPO_USUARIO'] == 2)
+			else if($data[0]['TIPO'] == 2)
 				$this->loginAsEst();
 			else{
-				$this->loginAsCoord();
+				$this->loginAsCoord($data[0]['TIPO']);
 			}
 		}
 		else{
@@ -55,9 +55,10 @@ class Login extends CI_Controller {
 		$this->parser->parse('telaAdm', $data);
 	}
 
-	public function loginAsCoord(){
+	public function loginAsCoord($tipo){
 		$this->load->library('session');
 		$data['url'] = base_url();
+		$data['tipo'] = $tipo;
 		$this->parser->parse('telaCoord', $data);
 	}
 
@@ -65,5 +66,9 @@ class Login extends CI_Controller {
 		$this->load->library('session');
 		$data['url'] = base_url();
 		$this->parser->parse('telaEst', $data);
+	}
+	
+	public function telaInicial(){
+		$this->load->view('inicio');
 	}
 }

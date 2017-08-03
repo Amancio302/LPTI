@@ -19,7 +19,7 @@
 		public function cadastro(){
 			$data['LOGIN'] = $this->input->post('txt_login');
 			$data['SENHA'] = $this->input->post('txt_senha');
-			$data['TIPO_USUARIO'] = $this->input->post('txt_tipo');
+			$data['TIPO'] = $this->input->post('txt_tipo');
 			$senha = $this->input->post('txt_confirmarsenha');
 			if(!$this->db->where('LOGIN', $data['LOGIN'])){
 			 $data['modal'] = "$(window).on('load',function(){
@@ -29,7 +29,19 @@
 			 $this->parser->parse('cadastro', $data);
 			}
 			else
-				$this->confere($data, $senha);
+				if($data['SENHA'] == $senha){
+					$data['SENHA'] = sha1($data['SENHA']);
+					$this->db->insert('USUARIO', $data);
+					$data['url'] = base_url();
+					$this->parser->parse('telaAdm', $data);
+		}
+		else{
+			$data['modal'] = "$(window).on('load',function(){
+							$('#erro-modal').modal('show');
+							});";
+		$data['url'] = base_url();
+		 $this->parser->parse('cadastro', $data);
+		}
 		}
 
 		public function editar(){
@@ -50,7 +62,7 @@
 		public function edit(){
 			$data['LOGIN'] = $this->input->post('txt_login');
 			$data['SENHA'] = $this->input->post('txt_senha');
-			$data['TIPO_USUARIO'] = $this->input->post('txt_tipo');
+			$data['TIPO'] = $this->input->post('txt_tipo');
 			$data['idUSUARIO'] = $this->input->post('id');
 			$senha = $this->input->post('txt_confirmarsenha');
 			if($this->db->where('LOGIN', $data['LOGIN'])){
