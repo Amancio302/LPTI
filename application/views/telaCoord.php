@@ -60,95 +60,109 @@
 									<a href="#">Integrado<span class="fa arrow"></span></a>
 									<ul class="nav nav-third-level">
 										<li>
-											<a href="#">Turmas <span class="fa arrow"></span></a>
-											<ul class="nav nav-fourth-level">
-												<li>
-													<a href="#">Edificações <span class="fa arrow"></span></a>
-													<ul class="nav nav-fifth-level">
-														<li>
-															<a href="#">1° Ano</a>
-														</li>
-														<li>
-															<a href="#">2° Ano</a>
-														</li>
-														<li>
-															<a href="#">3° Ano</a>
-														</li>
-													</ul>
-												</li>
-												<li>
-													<a href="#">Informática <span class="fa arrow"></span></a>
-													<ul class="nav nav-fifth-level">
-														<li>
-															<a href="#">1° Ano</a>
-														</li>
-														<li>
-															<a href="#">2° Ano</a>
-														</li>
-														<li>
-															<a href="#">3° Ano</a>
-														</li>
-													</ul>
-												</li>
-												<li>
-													<a href="#">Mecatrônica <span class="fa arrow"></span></a>
-													<ul class="nav nav-fifth-level">
-														<li>
-															<a href="#">1° Ano</a>
-														</li>
-														<li>
-															<a href="#">2° Ano</a>
-														</li>
-														<li>
-															<a href="#">3° Ano</a>
-														</li>
-													</ul>
-												</li>
-											</ul>
+											<?php
+												if($Tipo[0] == '3'){	
+													echo '<a href="#">Edificações <span class="fa arrow"></span></a>';
+													echo '<ul class="nav nav-fourth-level">';
+														echo '<li>';
+															echo '<a href="#">1° Ano</a>';
+														echo '</li>';
+														echo '<li>';
+															echo '<a href="#">2° Ano</a>';
+														echo '</li>';
+														echo '<li>';
+															echo '<a href="#">3° Ano</a>';
+														echo '</li>';
+													echo '</ul>';
+												}
+											?>
+										</li>
+										<li>
+											<?php
+												if($Tipo[0] == '2'){	
+													echo '<a href="#">Mecatrônica <span class="fa arrow"></span></a>';
+													echo '<ul class="nav nav-fourth-level">';
+														echo '<li>';
+															echo '<a href="#">1° Ano</a>';
+														echo '</li>';
+														echo '<li>';
+															echo '<a href="#">2° Ano</a>';
+														echo '</li>';
+														echo '<li>';
+															echo '<a href="#">3° Ano</a>';
+														echo '</li>';
+													echo '</ul>';
+												}
+											?>
+										</li>
+										<li>
+											<?php
+												if($Tipo[0] == '1'){	
+													echo '<a href="#">Informática <span class="fa arrow"></span></a>';
+													echo '<ul class="nav nav-fourth-level">';
+														echo '<li>';
+															echo '<a href="#">1° Ano</a>';
+														echo '</li>';
+														echo '<li>';
+															echo '<a href="#">2° Ano</a>';
+														echo '</li>';
+														echo '<li>';
+															echo '<a href="#">3° Ano</a>';
+														echo '</li>';
+													echo '</ul>';
+												}
+											?>		
 										</li>
 									</ul>
                                 </li>
                                 <li>
 									<a href="#">Subsequente<span class="fa arrow"></span></a>
 									<ul class="nav nav-third-level">
-										<li>
-											<a href="#">Turmas <span class="fa arrow"></span></a>
-											<ul class="nav nav-fourth-level">
 												<li>
-													<a href="#">Edificações <span class="fa arrow"></span></a>
-													<ul class="nav nav-fifth-level">
-														<li>
-															<a href="#">1° Ano</a>
-														</li>
-														<li>
-															<a href="#">2° Ano</a>
-														</li>
-													</ul>
+													<?php
+														if($Tipo[0] == '3'){	
+															echo '<a href="#">Edificações <span class="fa arrow"></span></a>';
+															echo '<ul class="nav nav-fourth-level">';
+																echo '<li>';
+																	echo '<a href="#">1° Ano</a>';
+																echo '</li>';
+																echo '<li>';
+																	echo '<a href="#">2° Ano</a>';
+																echo '</li>';
+															echo '</ul>';
+														}
+													?>
 												</li>
 												<li>
-													<a href="#">Informática <span class="fa arrow"></span></a>
-													<ul class="nav nav-fifth-level">
-														<li>
-															<a href="#">1° Ano</a>
-														</li>
-														<li>
-															<a href="#">2° Ano</a>
-														</li>
-													</ul>
+													<?php
+														if($Tipo[0] == '2'){	
+															echo '<a href="#">Mecatrônica <span class="fa arrow"></span></a>';
+															echo '<ul class="nav nav-fourth-level">';
+																echo '<li>';
+																	echo '<a href="#">1° Ano</a>';
+																echo '</li>';
+																echo '<li>';
+																	echo '<a href="#">2° Ano</a>';
+																echo '</li>';
+															echo '</ul>';
+														}
+													?>
 												</li>
 												<li>
-													<a href="#">Mecatrônica <span class="fa arrow"></span></a>
-													<ul class="nav nav-fifth-level">
-														<li>
-															<a href="#">1° Ano</a>
-														</li>
-														<li>
-															<a href="#">2° Ano</a>
-														</li>
-													</ul>
+													<?php
+														if($Tipo[0] == '1'){	
+															echo '<a href="#">Informática <span class="fa arrow"></span></a>';
+															echo '<ul class="nav nav-fourth-level">';
+																echo '<li>';
+																	echo '<a href="#">1° Ano</a>';
+																echo '</li>';
+																echo '<li>';
+																	echo '<a href="#">2° Ano</a>';
+																echo '</li>';
+															echo '</ul>';
+														}
+													?>
 												</li>
-											</ul>
-										</li>
 									</ul>
                                 </li>
                                 <li>

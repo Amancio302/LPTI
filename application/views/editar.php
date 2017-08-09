@@ -35,18 +35,11 @@
   		        	<div class="col-lg-12 col-md-12" id="btn">
 									<?php
 										foreach($USUARIO as $band){
-											echo "Login: " . $band->LOGIN.br();
-											if($band->TIPO == '1')
-												echo "Tipo: " . "Administrador" .br();
-											else if($band->TIPO == '2')
-												echo "Tipo: " . "Estagiário" .br();
-											else if($band->TIPO == '0')
-												echo "Tipo: " . "Coordenador" .br();
-											if($band->TIPO != '1')
-												echo anchor("Cadastro/editor/".$band->idUSUARIO, " Editar ", 'id="btn" class="btn btn-primary"').anchor("Cadastro/excluir/".$band->idUSUARIO, "Excluir ", 'class="btn btn-danger"').br();
-											else{
-												echo anchor("Cadastro/editor/".$band->idUSUARIO, " Editar ", 'id="btn" class="btn btn-primary"').br();
-												}
+											if($band->TIPO == '4'){
+												echo "Login: " . $band->LOGIN.br();
+											echo "Tipo: " . "Estagiário" .br();
+											echo anchor("Cadastro/editor/".$band->idUSUARIO, " Editar ", 'id="btn" class="btn btn-primary"').anchor("Cadastro/excluir/".$band->idUSUARIO, "Excluir ", 'class="btn btn-danger"').br();
+											}
 										}
 									?>
               </div>
