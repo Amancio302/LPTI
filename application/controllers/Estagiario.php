@@ -23,11 +23,14 @@
 							  $('#erro-modal').modal('show');
 							  });";
 			}
+			$da['modal'] = '';
+			$da['url'] = base_url();
 			$data['NOME'] = $this->input->post('txt_nome');
 			$dat['TURMA_idTURMA'] = $this->input->post('Turma');
 			$dat['ALUNO_idALUNO'] = $data['idALUNO'];
+			$dat['ANO'] = $this->input->post('txt_ano');
 			$this->db->insert('ALUNO', $data);
 			$this->db->insert('TURMA_has_ALUNO', $dat);
-			
+			$this->parser->parse('aluno', $da);
 		}
 	}
