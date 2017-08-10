@@ -23,7 +23,7 @@
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="../../Login/loginAsAdm">Conselho de Classe</a>
+                <a class="navbar-brand" href="index.html">Conselho de Classe</a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
@@ -36,6 +36,7 @@
                     </ul>
                 </li>
             </ul>
+
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse" id="btn">
                     <ul class="nav" id="side-menu">
@@ -51,62 +52,105 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="../">Início</a>
+                            <a href="../../Login/telaInicial">Início</a>
                         </li>
                         <li>
                             <a href="#">Lista de Alunos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Turmas <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Edificações <span class="fa arrow"></span></a>
-
-                                        <ul class="nav nav-fourth-level">
-                                        <li>
-                                            <a href="#">1° Ano</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2° Ano</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">3° Ano</a>
-                                        </li>
-                                        </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#">Informática <span class="fa arrow"></span></a>
-
-                                        <ul class="nav nav-fourth-level">
-                                        <li>
-                                            <a href="#">1° Ano</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2° Ano</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">3° Ano</a>
-                                        </li>
-                                        </ul>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Mecatrônica <span class="fa arrow"></span></a>
-
-                                        <ul class="nav nav-fourth-level">
-                                        <li>
-                                            <a href="#">1° Ano</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2° Ano</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">3° Ano</a>
-                                        </li>
-                                        </ul>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
+									<a href="#">Integrado<span class="fa arrow"></span></a>
+									<ul class="nav nav-third-level">
+										<li>
+											<a href="#">Turmas <span class="fa arrow"></span></a>
+											<ul class="nav nav-fourth-level">
+												<li>
+													<a href="#">Edificações <span class="fa arrow"></span></a>
+													<ul class="nav nav-fifth-level">
+														<li>
+															<a href="#">1° Ano</a>
+														</li>
+														<li>
+															<a href="#">2° Ano</a>
+														</li>
+														<li>
+															<a href="#">3° Ano</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">Informática <span class="fa arrow"></span></a>
+													<ul class="nav nav-fifth-level">
+														<li>
+															<a href="#">1° Ano</a>
+														</li>
+														<li>
+															<a href="#">2° Ano</a>
+														</li>
+														<li>
+															<a href="#">3° Ano</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">Mecatrônica <span class="fa arrow"></span></a>
+													<ul class="nav nav-fifth-level">
+														<li>
+															<a href="#">1° Ano</a>
+														</li>
+														<li>
+															<a href="#">2° Ano</a>
+														</li>
+														<li>
+															<a href="#">3° Ano</a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+                                </li>
+                                <li>
+									<a href="#">Subsequente<span class="fa arrow"></span></a>
+									<ul class="nav nav-third-level">
+										<li>
+											<a href="#">Turmas <span class="fa arrow"></span></a>
+											<ul class="nav nav-fourth-level">
+												<li>
+													<a href="#">Edificações <span class="fa arrow"></span></a>
+													<ul class="nav nav-fifth-level">
+														<li>
+															<a href="#">1° Ano</a>
+														</li>
+														<li>
+															<a href="#">2° Ano</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">Informática <span class="fa arrow"></span></a>
+													<ul class="nav nav-fifth-level">
+														<li>
+															<a href="#">1° Ano</a>
+														</li>
+														<li>
+															<a href="#">2° Ano</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">Mecatrônica <span class="fa arrow"></span></a>
+													<ul class="nav nav-fifth-level">
+														<li>
+															<a href="#">1° Ano</a>
+														</li>
+														<li>
+															<a href="#">2° Ano</a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
                                 </li>
                                 <li>
                                     <a href="buttons.html">Todos Alunos</a>
@@ -115,10 +159,10 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="../Cadastro/cadastrar">Cadastrar usuários</a>
+                            <a href="../cadastrar">Cadastrar usuários</a>
                         </li>
                         <li>
-                            <a href="../Cadastro/editar">Editar usuários</a>
+                            <a href="../editar">Editar usuários</a>
                         </li>
                     </ul>
                 </div>

@@ -1,4 +1,4 @@
-		<div id="Main">
+			<div id="Main">
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
@@ -11,20 +11,31 @@
   		        	<div class="col-lg-12 col-md-12" id="btn">
 									<?php
 										foreach($USUARIO as $band){
-											if($band->TIPO != '0'){
+											if($band->TIPO == '4'){
 												echo "Login: " . $band->LOGIN.br();
-											echo "Tipo: ";
-											if($band->TIPO == 4)
-												echo "Estagiário" .br();
-											else if($band->TIPO == 5)
-												echo "Professor" .br();
-											else
-												echo "Coordenador" .br();
+											echo "Tipo: " . "Estagiário" .br();
 											echo anchor("Cadastro/editor/".$band->idUSUARIO, " Editar ", 'id="btn" class="btn btn-primary"').anchor("Cadastro/excluir/".$band->idUSUARIO, "Excluir ", 'class="btn btn-danger"').br();
 											}
 										}
 									?>
-					</div>
-				</div>
-			</div>
+              </div>
+						</div>
+          </div>
+          </div>
+
+		<div id="edita">
+		
 		</div>
+    <!-- jQuery -->
+    <script src="{url}assets/js/jquery.min.js"></script>
+     <script type="text/javascript">
+      $(document).ready(function(e){
+        $("#btn").click(function(e){
+          e.preventDefault();
+          var href = $(this).attr('href');
+          console.log(href);
+//          $("#edita").load(href + " #principal");
+			return false;
+        });
+      });
+    </script>

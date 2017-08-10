@@ -16,6 +16,7 @@
     <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>

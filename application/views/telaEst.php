@@ -57,10 +57,19 @@
                             <a href="../Estagiario/aluCad">Cadastrar Alunos</a>
                         </li>
                         <li>
+                            <a href="../Estagiario/aluEdit">Editar Alunos</a>
+                        </li>
+                        <li>
                             <a href="../Estagiario/notCad">Cadastrar Notas</a>
                         </li>
                         <li>
+                            <a href="../Estagiario/notEdit">Editar Notas</a>
+                        </li>
+                        <li>
                             <a href="../Estagiario/freqCad">Cadastrar Frequência</a>
+                        </li>
+                        <li>
+                            <a href="../Estagiario/freqEdit">Editar Frequência</a>
                         </li>
                     </ul>
                 </div>
