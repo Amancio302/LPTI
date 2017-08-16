@@ -14,3 +14,25 @@
   padding-left: 38px;
   padding-right: 38px;
 }
+
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+}
+
+th{
+	height: 30px;
+	font-size: 17px;
+}
+
+table{
+	width: 50%;
+}
+
+td{
+	height:50px;
+}
+
+#btn{
+	border: none;
+}

@@ -16,6 +16,7 @@
     <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -81,7 +82,7 @@
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
-                      <h1 class="page-header">Editar Usuário</h1>
+                      <h1 class="page-header">Editar Turma</h1>
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
@@ -89,19 +90,29 @@
               <div class="row" id="principal">
   		        	<div class="col-lg-12 col-md-12" id="btn">
 									<?php
+										echo br()."<table>".
+										"<tr>".
+										"<th>Matricula</th>".
+										"<th>Nome</th>".
+										"<th></th>".
+										"</tr>";
 										foreach($TURMA_has_ALUNO as $band){
-											echo anchor("Estagiario/aExcluir/".$band->ALUNO_idALUNO, " Excluir ", 'id="btn" class="btn btn-danger"') . 
-											"Matrícula: " . $band->ALUNO_idALUNO . " - Nome: " . $band->NOME .br();
+											echo "<tr><td>".
+											$band->ALUNO_idALUNO. "</td>".
+											"<td>". $band->NOME.
+											"<td id='btn'>" . anchor('Estagiario/aExcluir/'.$band->ALUNO_idALUNO, ' Excluir ', 'class="btn btn-danger"').
+											"</td></tr>";
 										}
+										echo "</table>";
 										$atributos = array('name'=>'formulario_aluno', 'id'=>'formulario_aluno');
 										$btn = array('name'=>'btm_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
-										echo  form_open('Estagiario/aluno', $atributos).
-										form_hidden('Ano', $band[0]->ANO).
-										form_hidden('idTurma', $band[0]->TURMA_idTURMA).
+										echo br().form_open('Estagiario/aluno', $atributos).
+										form_hidden('Ano', $band->ANO).
+										form_hidden('idTurma', $band->TURMA_idTURMA).
 										form_label("Matricula: ", "txt_matricula").br().
 										form_input('txt_matricula').br().
 										form_label("Nome: ", "txt_nome").br().
-										form_input('txt_nome').br().
+										form_input('txt_nome').br().br().
 										form_submit("btn_cadastrar", "Cadastrar", $btn).
 										form_close();
 									?>

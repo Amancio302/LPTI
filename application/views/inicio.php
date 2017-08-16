@@ -55,7 +55,7 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{url}assets/js/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
+    <!-- Morris Charts JavaScript 
     <script src="{url}assets/js/raphael.min.js"></script>
     <script src="{url}assets/js/morris.min.js"></script>
     <script src="{url}assets/js/morris-data.js"></script>

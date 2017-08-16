@@ -28,7 +28,7 @@
 			 $data['url'] = base_url();
 			 $this->parser->parse('cadastro', $data);
 			}
-			else
+			else{
 				if($data['SENHA'] == $senha){
 					$data['SENHA'] = sha1($data['SENHA']);
 					$this->db->insert('USUARIO', $data);
@@ -43,6 +43,7 @@
 		 $this->parser->parse('cadastro', $data);
 		}
 		}
+	}
 
 		public function editar(){
 			$data['USUARIO'] = $this->db->get('USUARIO')->result();
@@ -82,7 +83,7 @@
 		}
 
 		public function excluir($id){
-			$this->db->where('idUSUARIO', $id);
+			$this->db->where('USUARIO.idUSUARIO', $id);
 			if($this->db->delete('USUARIO')){
 				redirect('Login/loginAsAdm');
 			}
@@ -102,5 +103,42 @@
 		$data['url'] = base_url();
 		 $this->parser->parse('cadastro', $data);
 		}
+	}
+	
+	public function addCurso(){
+		$data['url'] = base_url();
+		$this->parser->parse('addCurso', $data);
+	}
+	
+	public function addCurso1(){
+		$nome = $this->input->post('txt_curso');
+		$int = $this->input->post('Int');
+		$sub = $this->input->post('Sub');
+		if($int != ''){
+			$data['NOME'] = $nome." ".$int;
+			if(!$this->db->where('NOME', $data['NOME'])){
+				$this->db->insert('CURSO', $data);
+			}
+			else{
+				$data['url'] = base_url();
+				$data['modal'] = "$(window).on('load',function(){
+							$('#erro-modal').modal('show');
+							});";
+			}
+		}
+		if($sub != ''){
+			$data['NOME'] = $nome." ".$sub;
+			if(!$this->db->where('NOME', $data['NOME'])){
+				$this->db->insert('CURSO', $data);
+			}
+			else{
+				$data['url'] = base_url();
+				$data['modal'] = "$(window).on('load',function(){
+							$('#erro-modal').modal('show');
+							});";
+			}
+		}
+		$data['url'] = base_url();
+		$this->parser->parse('telaAdm', $data);
 	}
 }

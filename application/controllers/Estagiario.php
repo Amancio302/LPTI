@@ -63,17 +63,26 @@
 			$this->db->select('TURMA.idTURMA, TURMA.SERIE, TURMA_has_ALUNO.ANO, TURMA.idCURSO');
 			$this->db->from('TURMA');
 			$this->db->join('TURMA_has_ALUNO', 'TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA', 'right');
+			$this->db->distinct();
 			$data['TURMA'] = $this->db->get()->result();
 			$data['url'] = base_url();
 			$this->parser->parse('aEditar', $data);
 		}
 		
 		public function aEdit($id, $ano){
-			$this->db->select('TURMA_has_ALUNO.idTURMA, TURMA.SERIE, TURMA_has_ALUNO.ANO, TURMA.idCURSO');
-			$this->db->where('TURMA_idTURMA', $id);
-			$data['TURMA_has_ALUNO'] = $this->db->get('TURMA_has_ALUNO')->result();
+			$this->db->select('TURMA_has_ALUNO.TURMA_idTURMA, TURMA_has_ALUNO.ALUNO_idALUNO, ALUNO.NOME, TURMA_has_ALUNO.TURMA_idTURMA, TURMA_has_ALUNO.ANO');
+			$this->db->from('ALUNO');
+			$this->db->join('TURMA_has_ALUNO', 'ALUNO.idALUNO = TURMA_has_ALUNO.ALUNO_idALUNO', 'inner');
+			$this->db->where('TURMA_has_ALUNO.TURMA_idTURMA', $id);
+			$this->db->where('TURMA_has_ALUNO.ANO', $ano);
+			$data['TURMA_has_ALUNO'] = $this->db->get()->result();
 			$data['url'] = base_url();
 			$this->parser->parse('aEditor', $data);
+		}
+		
+		public function aExcluir($id){
+			$this->db->where('TURMA_has_ALUNO.ALUNO_idALUNO', $id);
+			$this->db->delete('TURMA_has_ALUNO');
 		}
 		
 	}
