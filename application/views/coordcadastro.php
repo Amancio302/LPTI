@@ -20,18 +20,10 @@
 																form_password('txt_senha').br().
 																form_label("Confirmar senha: ", "txt_confirmarsenha").br().
 																form_password('txt_confirmarsenha').br().
-																form_radio("txt_tipo", '0', false).
-																form_label("Administrador", "txt_tipo").br().
 																form_radio("txt_tipo", '4', false).
 																form_label("Estagiário", "txt_tipo").br().
 																form_radio("txt_tipo", '5', false).
-																form_label("Professor", "txt_tipo").br().
-																form_radio("txt_tipo", '1', false).
-																form_label("Coordenador Informática", "txt_tipo").br().
-																form_radio("txt_tipo", '2', false).
-																form_label("Coordenador Mecatrônica", "txt_tipo").br().
-																form_radio("txt_tipo", '3', false).
-																form_label("Coordenador Edficações", "txt_tipo").br();
+																form_label("Professor", "txt_tipo").br();
 																
 																/*$data = array();
 																foreach($curso as $c){
@@ -52,6 +44,7 @@
 																	}
 																}
 																*/
+																
 															echo form_submit("btn_cadastrar", "Cadastrar", $btn).
 																form_close();
 										 		?>

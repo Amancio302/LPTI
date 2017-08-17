@@ -31,7 +31,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="../../../Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -52,25 +52,25 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="../Login/telaInicial">Início</a>
+                            <a href="../../../Login/telaInicial">Início</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/aluCad">Cadastrar Alunos</a>
+                            <a href="../../../Estagiario/aluCad">Cadastrar Alunos</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/aluEdit">Editar Alunos</a>
+                            <a href="../../../Estagiario/aluEdit">Editar Alunos</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/notCad">Cadastrar Notas</a>
+                            <a href="../../../Estagiario/notCad">Cadastrar Notas</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/notEdit">Editar Notas</a>
+                            <a href="../../../Estagiario/notEdit">Editar Notas</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/freqCad">Cadastrar Frequência</a>
+                            <a href="../../../Estagiario/freqCad">Cadastrar Frequência</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/freqEdit">Editar Frequência</a>
+                            <a href="../../../Estagiario/freqEdit">Editar Frequência</a>
                         </li>
                     </ul>
                 </div>
@@ -105,10 +105,10 @@
 										}
 										echo "</table>";
 										$atributos = array('name'=>'formulario_aluno', 'id'=>'formulario_aluno');
-										$btn = array('name'=>'btm_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
+										$btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
 										echo br().form_open('Estagiario/aluno', $atributos).
-										form_hidden('Ano', $band->ANO).
-										form_hidden('idTurma', $band->TURMA_idTURMA).
+										form_hidden('txt_ano', $band->ANO).
+										form_hidden('Turma', $band->TURMA_idTURMA).
 										form_label("Matricula: ", "txt_matricula").br().
 										form_input('txt_matricula').br().
 										form_label("Nome: ", "txt_nome").br().

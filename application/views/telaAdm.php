@@ -164,12 +164,14 @@
                         <li>
                             <a href="../Cadastro/editar">Editar usuários</a>
                         </li>
+                        <!--
                         <li>
                             <a href="../Cadastro/addCurso">Cadastrar Curso</a>
                         </li>
                         <li>
                             <a href="../Cadastro/editCurso">Editar Curso</a>
                         </li>
+                        -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

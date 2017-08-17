@@ -13,7 +13,11 @@
 
 		public function cadastrar(){
 			$data['url'] = base_url();
-			$this->parser->parse('cadastro', $data);
+			$x = $this->session->userdata('tipo');
+			if($x == '0')
+				$this->parser->parse('cadastro', $data);
+			else
+				$this->parser->parse('coordcadastro', $data);
 		}
 
 		public function cadastro(){
@@ -48,7 +52,11 @@
 		public function editar(){
 			$data['USUARIO'] = $this->db->get('USUARIO')->result();
 			$data['url'] = base_url();
-			$this->parser->parse('editar', $data);
+			$x = $this->session->userdata('tipo');
+			if($x == '0')
+				$this->parser->parse('editar', $data);
+			else
+				$this->parser->parse('coordeditar', $data);
 		}
 
 		public function editor($id){
@@ -57,8 +65,6 @@
 			$data['url'] = base_url();
 			$this->parser->parse('editor', $data);
 		}
-
-		//Apresenta Problemas (Falar com professores)
 
 		public function edit(){
 			$data['LOGIN'] = $this->input->post('txt_login');

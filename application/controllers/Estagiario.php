@@ -26,14 +26,16 @@
 				$da['modal'] = "$(window).on('load',function(){
 							  $('#erro-modal').modal('show');
 							  });";
+				$da['url'] = base_url();
+				$this->parser->parse('aluno', $da);
 			}
 			else{
 				$da['modal'] = " ";
 				$this->db->insert('ALUNO', $data);
 				$this->db->insert('TURMA_has_ALUNO', $dat);
+				redirect();
 			}
-			$da['url'] = base_url();
-			$this->parser->parse('aluno', $da);
+			
 		}
 		
 		public function notCad(){
