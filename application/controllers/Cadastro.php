@@ -70,22 +70,22 @@
 			$data['LOGIN'] = $this->input->post('txt_login');
 			$data['SENHA'] = $this->input->post('txt_senha');
 			$data['TIPO'] = $this->input->post('txt_tipo');
-			$data['idUSUARIO'] = $this->input->post('id');
+			$idUSUARIO = $this->input->post('id');
 			$senha = $this->input->post('txt_confirmarsenha');
-			if($this->db->where('LOGIN', $data['LOGIN'])){
-				$ctr = $this->db->where('LOGIN', $data['LOGIN']);
-				if($ctr['idUSUARIO'] != $data['idUSUARIO']){
-				 $data['modal'] = "$(window).on('load',function(){
-								  $('#erro-modal').modal('show');
-								  });";
-				 $data['url'] = base_url();
-				 $this->parser->parse('cadastro', $data);
-		 		}
-				else
-					$this->confere($data, $senha);
-			}
-			else
-				$this->confere($data, $senha);
+			if($data['SENHA'] == $senha){
+			$data['SENHA'] = sha1($data['SENHA']);
+			$this->db->where('idUSUARIO', $idUSUARIO);
+			$this->db->update('USUARIO', $data);
+			$data['url'] = base_url();
+			$this->parser->parse('telaAdm', $data);
+		}
+		else{
+			$data['modal'] = "$(window).on('load',function(){
+							$('#erro-modal').modal('show');
+							});";
+		$data['url'] = base_url();
+		 $this->parser->parse('cadastro', $data);
+		}
 		}
 
 		public function excluir($id){
@@ -95,9 +95,10 @@
 			}
 		}
 
-	public function confere($data, $senha){
+	public function confere($data, $senha, $idUSUARIO){
 		if($data['SENHA'] == $senha){
 			$data['SENHA'] = sha1($data['SENHA']);
+			$this->db->where('idUSUARIO', $idUSUARIO);
 			$this->db->update('USUARIO', $data);
 			$data['url'] = base_url();
 			$this->parser->parse('telaAdm', $data);

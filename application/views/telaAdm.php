@@ -55,7 +55,7 @@
                             <a href="../Login/telaInicial">Início</a>
                         </li>
                         <li>
-                            <a href="#">Lista de Alunos<span class="fa arrow"></span></a>
+                            <a href="../Listar/listar/0/0">Lista de Alunos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
 									<a href="#">Integrado<span class="fa arrow"></span></a>

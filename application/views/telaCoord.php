@@ -177,6 +177,9 @@
                         <li>
                             <a href="../Cadastro/editar">Editar usuários</a>
                         </li>
+                        <li>
+                            <a href="../Coord/parametros">Parâmetros de Risco</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
