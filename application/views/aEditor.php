@@ -90,12 +90,15 @@
               <div class="row" id="principal">
   		        	<div class="col-lg-12 col-md-12" id="btn">
 									<?php
-										echo br()."<table>".
+										echo br()."<table id='myTable'>".
+										"<thead>".
 										"<tr>".
 										"<th>Matricula</th>".
 										"<th>Nome</th>".
 										"<th></th>".
-										"</tr>";
+										"</tr>".
+										"</thead>".
+										"<tbody>";
 										foreach($TURMA_has_ALUNO as $band){
 											echo "<tr><td>".
 											$band->ALUNO_idALUNO. "</td>".
@@ -103,7 +106,7 @@
 											"<td id='btn'>" . anchor('Estagiario/aExcluir/'.$band->ALUNO_idALUNO, ' Excluir ', 'class="btn btn-danger"').
 											"</td></tr>";
 										}
-										echo "</table>";
+										echo "</tbody></table>";
 										$atributos = array('name'=>'formulario_aluno', 'id'=>'formulario_aluno');
 										$btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
 										echo br().form_open('Estagiario/aluno', $atributos).
@@ -134,6 +137,12 @@
         });
       });
     </script>
+    <script src="{url}assets/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script>$(document).ready(function(e){
+		$('#myTable').DataTable();
+		alert();
+	});
+	</script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{url}assets/js/bootstrap.min.js"></script>

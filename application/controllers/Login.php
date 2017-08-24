@@ -22,7 +22,7 @@ class Login extends CI_Controller {
 		$login['SENHA'] = sha1($this->input->post('txt_senha'));
 		$data = $this->db->get_where('USUARIO', $login)->result_array();
 		if(count($data) > 0){
-			$array=array("login"=>true, "tipo"=>$data[0]['TIPO']);
+			$array=array("login"=>true, "tipo"=>$data[0]['TIPO'], "bool"=>true);
 			$this->session->set_userdata($array);
 			if($data[0]['TIPO'] == 0)
           $this->loginAsAdm();
@@ -54,6 +54,7 @@ class Login extends CI_Controller {
 	public function loginAsAdm(){
 		$this->load->library('session');
 		$data['url'] = base_url();
+		$data['modal'] = "";
 		$this->parser->parse('telaAdm', $data);
 	}
 
@@ -61,12 +62,14 @@ class Login extends CI_Controller {
 		$this->load->library('session');
 		$data['url'] = base_url();
 		$data['Tipo'] = $tipo;
+		$data['modal'] = "";
 		$this->parser->parse('telaCoord', $data);
 	}
 
 	public function loginAsEst(){
 		$this->load->library('session');
 		$data['url'] = base_url();
+		$data['modal'] = "";
 		$this->parser->parse('telaEst', $data);
 	}
 	

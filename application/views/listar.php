@@ -7,9 +7,10 @@
         </div>
     <div class="row" id="principal">
 		<div class="col-lg-12 col-md-12" id="btn">
+			<div>
 			<?php
-				echo br()."<table>".
-				"<tr>".
+				echo br()."<table id='myTable'>".
+				"<thead><tr>".
 				"<th>Situação</th>".
 				"<th>Matricula</th>".
 				"<th>Nome</th>".
@@ -17,7 +18,7 @@
 				"<th>Curso</th>".
 				"<th>Modalidade</th>".
 				"<th>Ano</th>".
-				"</tr>";
+				"</tr></thead><tbody>";
 				foreach($TURMA_has_ALUNO as $band){
 				echo "<tr><td></td>".
 				"<td>".$band->idALUNO. "</td>".
@@ -28,8 +29,9 @@
 				"<td>".$band->ANO. "</td>".
 				"</tr>";
 				}
-				echo "</table>";
+				echo "</tbody></table>";
 			?>
+			</div>
 		</div>
 	</div>
 </div>

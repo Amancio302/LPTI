@@ -1,8 +1,8 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
-
+	
 	class Listar extends CI_Controller {
-
+	
 		public function __construct(){
 			parent::__construct();
 			$this->load->library('session');
@@ -11,7 +11,7 @@
 			}
 		}
 		
-		public function listar($mod, $ser){
+		public function listar($mod){
 			
 			/*SELECT * FROM `ALUNO` 
 INNER JOIN TURMA_has_ALUNO ON ALUNO.idALUNO = TURMA_has_ALUNO.ALUNO_idALUNO
@@ -26,7 +26,10 @@ INNER JOIN MODALIDADE ON CURSO.MODALIDADE = MODALIDADE.idMODALIDADE*/
 			$this->db->join('CURSO', 'CURSO.idCURSO = TURMA.idCURSO', 'inner');
 			$this->db->join('MODALIDADE', 'CURSO.MODALIDADE = MODALIDADE.idMODALIDADE', 'inner');
 			$data['TURMA_has_ALUNO'] = $this->db->get()->result();
-			$this->load->view("listar", $data);
+			$data['modal'] = "";
+			$data['url'] = base_url();
+			$this->parser->parse("listar", $data);
+			
 		}
 		
 	}	
