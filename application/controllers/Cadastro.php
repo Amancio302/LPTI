@@ -5,7 +5,6 @@
 
 		public function __construct(){
 			parent::__construct();
-			$this->load->library('session');
 			if(!$this->session->userdata('login')){
 				$this->load->view('login');
 			}
@@ -33,7 +32,7 @@
 			 $this->parser->parse('cadastro', $data);
 			}
 			else{
-				if($data['SENHA'] == $senha){
+				if(($data['SENHA'] == $senha)&&($senha != "")){
 					$data['SENHA'] = sha1($data['SENHA']);
 					$this->db->insert('USUARIO', $data);
 					$data['url'] = base_url();
@@ -43,7 +42,7 @@
 			$data['modal'] = "$(window).on('load',function(){
 							$('#erro-modal').modal('show');
 							});";
-		$data['url'] = base_url();
+		 $data['url'] = base_url();
 		 $this->parser->parse('cadastro', $data);
 		}
 		}
@@ -72,7 +71,7 @@
 			$data['TIPO'] = $this->input->post('txt_tipo');
 			$idUSUARIO = $this->input->post('id');
 			$senha = $this->input->post('txt_confirmarsenha');
-			if($data['SENHA'] == $senha){
+			if(($data['SENHA'] == $senha)&&($senha != "")){
 			$data['SENHA'] = sha1($data['SENHA']);
 			$this->db->where('idUSUARIO', $idUSUARIO);
 			$this->db->update('USUARIO', $data);

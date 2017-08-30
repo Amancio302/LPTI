@@ -17,7 +17,6 @@ class Login extends CI_Controller {
 	}
 
 	public function efetuar_login(){
-		$this->load->library('session');
 		$login['LOGIN'] = $this->input->post('txt_nome');
 		$login['SENHA'] = sha1($this->input->post('txt_senha'));
 		$data = $this->db->get_where('USUARIO', $login)->result_array();
