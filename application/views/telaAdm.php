@@ -44,88 +44,88 @@
                             <a href="../Login/telaInicial">Início</a>
                         </li>
                         <li>
-                            <a href="../Listar/listar/0">Lista de Alunos<span class="fa arrow"></span></a>
+                            <a href="../Listar/listar/0/0/0">Lista de Alunos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="../Listar/listar/0/10">Integrado<span class="fa arrow"></span></a>
+                                    <a href="../Listar/listar/0/0/1">Integrado<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                                    <a href="../Listar/listar/0/3">Edificações <span class="fa arrow"></span></a>
+                                                    <a href="../Listar/listar/0/3/1">Edificações <span class="fa arrow"></span></a>
                                                     <ul class="nav nav-fourth-level">
                                                         <li>
-                                                            <a href="../Listar/listar/31/0">1° Ano</a>
+                                                            <a href="../Listar/listar/31/0/0">1° Ano</a>
                                                         </li>
                                                         <li>
-                                                            <a href="../Listar/listar/32/0">2° Ano</a>
+                                                            <a href="../Listar/listar/32/0/0">2° Ano</a>
                                                         </li>
                                                         <li>
-                                                            <a href="../Listar/listar/33/0">3° Ano</a>
+                                                            <a href="../Listar/listar/33/0/0">3° Ano</a>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="../Listar/listar/0/1">Informática <span class="fa arrow"></span></a>
+                                                    <a href="../Listar/listar/0/1/1">Informática <span class="fa arrow"></span></a>
                                                     <ul class="nav nav-fourth-level">
                                                         <li>
-                                                            <a href="../Listar/listar/11/0">1° Ano</a>
+                                                            <a href="../Listar/listar/11/0/0">1° Ano</a>
                                                         </li>
                                                         <li>
-                                                            <a href="../Listar/listar/12/0">2° Ano</a>
+                                                            <a href="../Listar/listar/12/0/0">2° Ano</a>
                                                         </li>
                                                         <li>
-                                                            <a href="../Listar/listar/13/0">3° Ano</a>
+                                                            <a href="../Listar/listar/13/0/0">3° Ano</a>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="../Listar/listar/0/2">Mecatrônica <span class="fa arrow"></span></a>
+                                                    <a href="../Listar/listar/0/2/1">Mecatrônica <span class="fa arrow"></span></a>
                                                     <ul class="nav nav-fourth-level">
                                                         <li>
-                                                            <a href="../Listar/listar/21/0">1° Ano</a>
+                                                            <a href="../Listar/listar/21/0/0">1° Ano</a>
                                                         </li>
                                                         <li>
-                                                            <a href="../Listar/listar/22/0">2° Ano</a>
+                                                            <a href="../Listar/listar/22/0/0">2° Ano</a>
                                                         </li>
                                                         <li>
-                                                            <a href="../Listar/listar/23/0">3° Ano</a>
+                                                            <a href="../Listar/listar/23/0/0">3° Ano</a>
                                                         </li>
                                                     </ul>
                                                 </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="../Listar/listar/0/20">Subsequente<span class="fa arrow"></span></a>
+                                    <a href="../Listar/listar/0/0/2">Subsequente<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                         <li>
-                                                    <a href="../Listar/listar/0/6">Edificações <span class="fa arrow"></span></a>
+                                                    <a href="../Listar/listar/0/6/2">Edificações <span class="fa arrow"></span></a>
                                                     <ul class="nav nav-fourth-level">
                                                         <li>
-                                                            <a href="../Listar/listar/0/61">1° Ano</a>
+                                                            <a href="../Listar/listar/61/0/0">1° Ano</a>
                                                         </li>
                                                         <li>
-                                                            <a href="../Listar/listar/0/62">2° Ano</a>
+                                                            <a href="../Listar/listar/62/0/0">2° Ano</a>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="../Listar/listar/0/4">Informática <span class="fa arrow"></span></a>
+                                                    <a href="../Listar/listar/0/4/2">Informática <span class="fa arrow"></span></a>
                                                     <ul class="nav nav-fourth-level">
                                                         <li>
-                                                            <a href="../Listar/listar/0/41">1° Ano</a>
+                                                            <a href="../Listar/listar/41/0/0">1° Ano</a>
                                                         </li>
                                                         <li>
-                                                            <a href="../Listar/listar/0/42">2° Ano</a>
+                                                            <a href="../Listar/listar/42/0/0">2° Ano</a>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="../Listar/listar/0/5">Mecatrônica <span class="fa arrow"></span></a>
+                                                    <a href="../Listar/listar/0/5/2">Mecatrônica <span class="fa arrow"></span></a>
                                                     <ul class="nav nav-fourth-level">
                                                         <li>
-                                                            <a href="../Listar/listar/0/51">1° Ano</a>
+                                                            <a href="../Listar/listar/51/0/0">1° Ano</a>
                                                         </li>
                                                         <li>
-                                                            <a href="../Listar/listar/0/52">2° Ano</a>
+                                                            <a href="../Listar/listar/52/0/0">2° Ano</a>
                                                         </li>
                                                     </ul>
                                                 </li>

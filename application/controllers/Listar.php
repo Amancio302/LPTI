@@ -11,7 +11,7 @@
             }
         }
 
-        public function listar($mod, $x){
+        public function listar($id, $curso, $mod){
 
             /*SELECT * FROM `ALUNO`
 INNER JOIN TURMA_has_ALUNO ON ALUNO.idALUNO = TURMA_has_ALUNO.ALUNO_idALUNO
@@ -26,20 +26,14 @@ INNER JOIN MODALIDADE ON CURSO.MODALIDADE = MODALIDADE.idMODALIDADE*/
             $this->db->join('CURSO', 'CURSO.idCURSO = TURMA.idCURSO', 'inner');
             $this->db->join('MODALIDADE', 'CURSO.MODALIDADE = MODALIDADE.idMODALIDADE', 'inner');
             $ano = date("Y");
-            if($mod !=0)
-                $this->db->where('TURMA.idTURMA', $mod);
-            else if($x !=0){
-                if($x == 10)
-                    $x = 1;
-                else if($x == 20)
-                    $x = 2;
-                else{
-                    $this->db->like('TURMA.idTURMA', $x);
-                    $x = 0;
-                }
-                if($x != 0)
-                    $this->db->where('CURSO.MODALIDADE', $x);
-            }
+            if($id !=0)
+                $this->db->where('TURMA.idTURMA', $id);
+            else if($mod !=0 && $curso == 0)
+				$this->db->where('CURSO.MODALIDADE', $mod);
+			else if($curso != 0){
+				$this->db->where('CURSO.MODALIDADE', $mod);
+                $this->db->like('TURMA.idTURMA', $curso);
+			}
             $this->db->where('TURMA_has_ALUNO.ANO', $ano);
             $data['TURMA_has_ALUNO'] = $this->db->get()->result();
             $data['modal'] = "";

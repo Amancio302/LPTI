@@ -68,51 +68,40 @@
             <!-- /.navbar-static-side -->
         </nav>		
 		<div id="Main">
-          <div id="page-wrapper">
+			<div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
-                      <h1 class="page-header">Editar Turma</h1>
+                      <h1 class="page-header"> Inserir Notas </h1>
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
               <!-- /.row -->
-              <div class="row" id="principal">
-  		        	<div class="col-lg-12 col-md-12" id="btn">
-									<?php
-										echo br()."<table id='myTable'>".
-										"<thead>".
-										"<tr>".
-										"<th>Matricula</th>".
-										"<th>Nome</th>".
-										"<th></th>".
-										"</tr>".
-										"</thead>".
-										"<tbody>";
-										foreach($TURMA_has_ALUNO as $band){
-											echo "<tr><td>".
-											$band->ALUNO_idALUNO. "</td>".
-											"<td>". $band->NOME.
-											"<td id='btn'>" . anchor('Estagiario/aExcluir/'.$band->ALUNO_idALUNO."/".$band->TURMA_idTURMA."/".$band->ANO, ' Excluir ', 'class="btn btn-danger"').
-											"</td></tr>";
-										}
-										echo "</tbody></table>";
-										$atributos = array('name'=>'formulario_aluno', 'id'=>'formulario_aluno');
-										$btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
-										echo br().form_open('Estagiario/aluno2', $atributos).
-										form_hidden('txt_ano', $band->ANO).
-										form_hidden('Turma', $band->TURMA_idTURMA).
-										form_label("Matricula: ", "txt_matricula").br().
-										form_input('txt_matricula').br().
-										form_label("Nome: ", "txt_nome").br().
-										form_input('txt_nome').br().br().
-										form_submit("btn_cadastrar", "Cadastrar", $btn).
-										form_close();
-									?>
-					</div>
-				</div>
-			</div>
+              <div class="row">
+				<?php
+					$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
+					$btn = array('name'=>'btn_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
+					$i = 0;
+					echo form_open('Estagiario/nota/'.$materia[0]->TURMA_idTURMA.'/'.$materia[0]->ANO, $atributos);
+					foreach($materia as $data){
+						echo form_radio("txt_materia", $data->idMATERIA, true).
+						form_label($data->NOME, "txt_materia")."  ";
+						$i++;
+						if($i == 4){
+							echo br();
+							$i = 0;
+						}
+					}
+					echo br().form_label("Notas: ", "txt_notas").br().
+					form_input('txt_notas').br().
+					form_label("Bimestre", "txt_bim")." ".
+					form_input(array('name'=>'txt_bim', 'type'=>'number', 'min'=>1, 'max'=>4, 'value'=>1)).br().
+					form_submit("btn_cadastrar", "Cadastrar", $btn).
+					form_close();
+				?>
+              </div>
+          </div>
 		</div>
-		</div>
+	</div>
 
 
     <!-- jQuery -->

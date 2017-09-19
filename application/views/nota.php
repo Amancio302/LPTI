@@ -20,7 +20,7 @@
 												}
 											}
 											if($bool){
-												echo anchor("Estagiario/notEditar/".$band->idTURMA."/".$band->ANO, " Cadastrar ", 'id="btn" class="btn btn-primary"');
+												echo anchor("Estagiario/notEditar/".$band->idTURMA."/".$band->ANO, " Inserir ", 'id="btn" class="btn btn-primary"');
 												if($band->SERIE == '1'){
 													echo " 1°";
 													$data[$i] = 1;
