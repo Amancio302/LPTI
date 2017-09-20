@@ -99,7 +99,7 @@
 					}
 			}
 			
-			redirect("Materia/index");
+			$this->index();
 			
 		}
 		

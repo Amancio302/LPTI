@@ -161,7 +161,8 @@
 			if($this->db->delete('DIMENSAO')) {
 				
 				$data['url'] = base_url();
-				$this->parser->parse('telaAdm', $data);			
+				$this->parser->parse('telaAdm', $data);
+				redirect("Questionario");			
 			
 			} else {
 				echo "Exclusão impossível";

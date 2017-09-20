@@ -2,7 +2,7 @@
           <div id="page-wrapper">
               <div class="row">
                   <div class="col-lg-12">
-                      <h1 class="page-header">Cadastro de Notas</h1>
+                      <h1 class="page-header">Cadastro de Frequência</h1>
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
@@ -20,7 +20,7 @@
 												}
 											}
 											if($bool){
-												echo anchor("Estagiario/notInsert/".$band->idTURMA."/".$band->ANO, " Inserir ", 'id="btn" class="btn btn-primary"');
+												echo anchor("Estagiario/freqInsert/".$band->idTURMA."/".$band->ANO, " Inserir ", 'id="btn" class="btn btn-primary"');
 												if($band->SERIE == '1'){
 													echo " 1°";
 													$data[$i] = 1;

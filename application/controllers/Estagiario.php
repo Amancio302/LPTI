@@ -70,7 +70,7 @@
 			$this->parser->parse('nota', $data);
 		}
 		
-		public function notEditar($id, $ano){
+		public function notInsert($id, $ano){
 			$data['url'] = base_url();
 			$this->db->select('MATERIA.idMATERIA, MATERIA.NOME, TURMA_has_MATERIA.TURMA_idTURMA, TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.ANO');
 			$this->db->from('TURMA_has_MATERIA');
@@ -93,19 +93,18 @@
 			$this->db->order_by('ALUNO.NOME', 'ASC');
 			$nomes = $this->db->get()->result();
 			if(count($notas)==count($nomes)){
-				foreach($notas as $x){
-					foreach($x as $nota)
-						$data['NOTA'] = $nota;
-					foreach($nomes as $nome)
-						$data['idALUNO'] = $nomes[0]->ALUNO_idALUNO;
+				for($i = 0; $i<count($notas); $i++){
+					$data['NOTA'] = $notas[$i];
+					$data['idALUNO'] = $nomes[$i]->ALUNO_idALUNO;
 					$data['idMATERIA'] = $materia;
 					$data['BIMESTRE'] = $bimestre;
+					$this->db->insert('NOTA', $data);
 				}
-				$this->db->insert('NOTA', $data);
-				redirect('Estagiario/notEditar/'.$id.'/'.$ano);
+				redirect('Estagiario/notInsert/'.$id.'/'.$ano);
 			}
-			else
+			else{
 				echo '<script type="text/javascript">alert("A quantidade de notas é diferente da quantidade de alunos");</script>';
+			}
 		}
 		
 		public function aluEdit(){
@@ -134,10 +133,61 @@
 			$this->db->delete('TURMA_has_ALUNO');
 			redirect("Estagiario/aEdit/".$turma."/".$ano);
 		}
+	
+	public function freqCad(){
+			$this->db->select('TURMA.idTURMA, TURMA.SERIE, TURMA_has_ALUNO.ANO, TURMA.idCURSO');
+			$this->db->from('TURMA');
+			$this->db->join('TURMA_has_ALUNO', 'TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA', 'right');
+			$this->db->distinct();
+			$data['TURMA'] = $this->db->get()->result();
+			$data['url'] = base_url();
+			$this->parser->parse('freq', $data);
+		}
 		
+		public function freqInsert($id, $ano, $error){
+			if($error == 1){
+				echo '<script type="text/javascript">alert("A frequência não pode ser maior ");</script>';
+			}
+			else{
+				$this->db->select('MATERIA.idMATERIA, MATERIA.NOME, TURMA_has_MATERIA.TURMA_idTURMA, TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.ANO');
+				$this->db->from('TURMA_has_MATERIA');
+				$this->db->join('MATERIA', 'MATERIA.idMATERIA = TURMA_has_MATERIA.MATERIA_idMATERIA', 'right');
+				$this->db->distinct();
+				$this->db->where('TURMA_has_MATERIA.TURMA_idTURMA', $id);
+				$this->db->where('TURMA_has_MATERIA.ANO', $ano);
+				$data['materia'] = $this->db->get()->result();
+			}
+			$data['url'] = base_url();
+			$this->parser->parse('freqs', $data);
+		}
+		
+		public function freq($id, $ano){
+			$freq = explode(',', $this->input->post('txt_freq'));
+			$materia = (string)$this->input->post('txt_materia');
+			$bimestre = (string)$this->input->post('txt_bim');
+			$this->db->select('TURMA_has_ALUNO.ALUNO_idALUNO, ALUNO.idALUNO, ALUNO.NOME');
+			$this->db->from('TURMA_has_ALUNO');
+			$this->db->join('ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO');
+			$this->db->where('TURMA_has_ALUNO.TURMA_idTURMA', $id);
+			$this->db->where('TURMA_has_ALUNO.ANO', $ano);
+			$this->db->order_by('ALUNO.NOME', 'ASC');
+			$nomes = $this->db->get()->result();
+			if(count($freq)==count($nomes)){
+				for($i = 0; $i<count($freq); $i++){
+					$data['FALTAS'] = $freq[$i];
+					if($data['FALTAS'] > 100 or $data['FALTAS'] < 0){
+						redirect('Estagiario/freqInsert/'.$id.'/'.$ano.'/1');
+					}
+					$data['idALUNO'] = $nomes[$i]->ALUNO_idALUNO;
+					$data['idMATERIA'] = $materia;
+					$data['BIMESTRE'] = $bimestre;
+					$this->db->insert('FREQUENCIA', $data);
+				}
+				redirect('Estagiario/freqInsert/'.$id.'/'.$ano);
+			}
+			else{
+				echo '<script type="text/javascript">alert("A quantidade de notas é diferente da quantidade de alunos");</script>';
+			}
+		}
 	}
-
-
-
-
 //form_dropdown([$name = ''[, $options = array()[, $selected = array()[, $extra = '']]]])

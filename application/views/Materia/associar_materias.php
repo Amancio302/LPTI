@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="elyas" >
+    <meta name="author" content="Alunos" >
 
     <title>Início</title>
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
@@ -143,40 +143,41 @@
 												
 												$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 												$btn = array('name'=>'btm_cadastrar', 'id'=>'botao1', 'class'=>'btn btn-primary');
+												$ano = date("Y");												
 												echo form_open('Materia/associar', $atributos).
 													 form_hidden('idMATERIA', $MATERIA[0]->idMATERIA).
 													 form_label("Ano: ", "txt_ano").
-													 form_input('txt_ano').br().
-													 form_label("1° Edif Int", "txt_1i") .
-													 form_checkbox("turma[]", "1", FALSE) .
+													 form_input(array('name'=>'txt_ano', 'type'=>'number', 'min'=>$ano, 'max'=>1+$ano, 'value'=>$ano)).br().
+													form_label("1° Edif Int", "txt_1i") .
+													 form_checkbox("turma[]", "31", FALSE) .
 													 form_label("1° Info Int", "txt_1i") .
-													 form_checkbox("turma[]", "6", FALSE) .
-													 form_label("1° Meca Int", "txt_1i") .
 													 form_checkbox("turma[]", "11", FALSE) .
+													 form_label("1° Meca Int", "txt_1i") .
+													 form_checkbox("turma[]", "21", FALSE) .
 													 form_label("1° Edif Sub", "txt_1i") .
-													 form_checkbox("turma[]", "4", FALSE) .
+													 form_checkbox("turma[]", "61", FALSE) .
 													 form_label("1° Info Sub", "txt_1i") .
-													 form_checkbox("turma[]", "9", FALSE) .
+													 form_checkbox("turma[]", "41", FALSE) .
 													 form_label("1° Meca Sub", "txt_1i") .
-													 form_checkbox("turma[]", "14", FALSE) . br() .
+													 form_checkbox("turma[]", "51", FALSE) . br() .
 													 form_label("2° Edif Int", "txt_1i") .
-													 form_checkbox("turma[]", "2", FALSE) .
+													 form_checkbox("turma[]", "32", FALSE) .
 													 form_label("2° Info Int", "txt_1i") .
-													 form_checkbox("turma[]", "7", FALSE) .
+													 form_checkbox("turma[]", "12", FALSE) .
 													 form_label("2° Meca Int", "txt_1i") .
-													 form_checkbox("turma[]", "12", FALSE) . 
+													 form_checkbox("turma[]", "22", FALSE) . 
 													 form_label("2° Edif Sub", "txt_1i") .
-													 form_checkbox("turma[]", "5", FALSE) . 
+													 form_checkbox("turma[]", "62", FALSE) . 
 													 form_label("2° Info Sub", "txt_1i") .
-													 form_checkbox("turma[]", "10", FALSE) .
+													 form_checkbox("turma[]", "42", FALSE) .
 													 form_label("2° Meca Sub", "txt_1i") .
-													 form_checkbox("turma[]", "15", FALSE) . br() .
+													 form_checkbox("turma[]", "52", FALSE) . br() .
 													 form_label("3° Edif Int", "txt_1i") .
-													 form_checkbox("turma[]", "3", FALSE) . 
+													 form_checkbox("turma[]", "33", FALSE) . 
 													 form_label("3° Info Int", "txt_1i") .
-													 form_checkbox("turma[]", "8", FALSE) . 
+													 form_checkbox("turma[]", "13", FALSE) . 
 													 form_label("3° Meca Int", "txt_1i") .
-													 form_checkbox("turma[]", "13", FALSE) . br().
+													 form_checkbox("turma[]", "23", FALSE) . br().
 													 
 													 
 													 form_submit("btn_cadastrar", " Salvar ", $btn).

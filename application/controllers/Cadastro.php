@@ -148,9 +148,6 @@
 		$this->parser->parse('telaAdm', $data);
 	}
 
-	public function csv() {
-		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment; filename="sampley.csv"');	
-	}
+	
 
 }

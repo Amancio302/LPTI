@@ -31,6 +31,8 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
+								<li><a href="{url}Importacao/excel"><i class="fa fa-sign-out fa-fw"></i> Gerar .xls</a>
+                        </li>                    
                         <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>

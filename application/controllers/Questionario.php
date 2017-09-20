@@ -162,7 +162,7 @@
 				
 				$data['url'] = base_url();
 				$this->parser->parse('telaAdm', $data);
-				redirect("Questionario");			
+				redirect("Questionario/index");			
 			
 			} else {
 				echo "Exclusão impossível";
@@ -225,9 +225,7 @@
 					}
 			}			
 			
-			$data['url'] = base_url();
 			
-			$this->parser->parse('telaAdm', $data);
 			
 		}
 
