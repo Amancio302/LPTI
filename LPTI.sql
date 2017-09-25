@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 12-Set-2017 às 13:43
--- Versão do servidor: 5.7.18-0ubuntu0.16.04.1
+-- Generation Time: 18-Set-2017 às 15:10
+-- Versão do servidor: 5.7.19-0ubuntu0.16.04.1
 -- PHP Version: 7.0.23-1+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -41,6 +41,7 @@ INSERT INTO `ALUNO` (`idALUNO`, `NOME`, `SITUACAO`, `FOTO`) VALUES
 (101010101010, '6565', NULL, NULL),
 (121234345678, 'sasasa', NULL, NULL),
 (201518110000, 'Ana', NULL, NULL),
+(201518110250, 'saasas', NULL, NULL),
 (201518110259, 'Jew', NULL, NULL),
 (202020202020, '454545', NULL, NULL),
 (303030303030, '1010', NULL, NULL),
@@ -287,10 +288,20 @@ CREATE TABLE `TURMA` (
 
 INSERT INTO `TURMA` (`idTURMA`, `idCURSO`, `SERIE`, `MODALIDADE`) VALUES
 (11, 1, 1, 1),
+(12, 1, 2, 1),
+(13, 1, 3, 1),
+(21, 2, 1, 1),
 (22, 2, 2, 1),
+(23, 2, 3, 1),
+(31, 3, 1, 1),
+(32, 3, 2, 1),
 (33, 3, 3, 1),
 (41, 4, 1, 2),
-(52, 5, 2, 2);
+(42, 4, 2, 2),
+(51, 5, 1, 2),
+(52, 5, 2, 2),
+(61, 6, 1, 2),
+(62, 6, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -310,6 +321,7 @@ CREATE TABLE `TURMA_has_ALUNO` (
 
 INSERT INTO `TURMA_has_ALUNO` (`ALUNO_idALUNO`, `TURMA_idTURMA`, `ANO`) VALUES
 (201518110000, 11, 2017),
+(201518110259, 41, 2017),
 (505050505050, 33, 2017),
 (784512963258, 33, 2017);
 
@@ -567,7 +579,7 @@ ALTER TABLE `RESPOSTA`
 -- AUTO_INCREMENT for table `TURMA`
 --
 ALTER TABLE `TURMA`
-  MODIFY `idTURMA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `idTURMA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT for table `USUARIO`
 --

@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="alunos" >
+    <meta name="author" content="Alunos" >
 
     <title>Início</title>
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
@@ -43,23 +43,32 @@
                         <li>
                             <a href="{url}Login/telaInicial">Início</a>
                         </li>
-                        <li>
-                            <a href="../Estagiario/aluCad">Cadastrar Alunos</a>
+                                <li>
+                            <a href="../Estagiario/aluCad">Cadastrar Aluno<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../Estagiario/aluCad">Cadastro único</a>
+                                </li>
+                                <li>
+                                    <a href="../Estagiario/aluCadMassa">Cadastro em massa</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="../Estagiario/aluEdit">Editar Turmas</a>
+                            <a href="{url}Estagiario/aluEdit">Editar Turmas</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/notCad">Cadastrar Notas</a>
+                            <a href="{url}Estagiario/notCad">Cadastrar Notas</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/notEdit">Editar Notas</a>
+                            <a href="{url}Estagiario/notEdit">Editar Notas</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/freqCad">Cadastrar Frequência</a>
+                            <a href="{url}Estagiario/freqCad">Cadastrar Frequência</a>
                         </li>
                         <li>
-                            <a href="../Estagiario/freqEdit">Editar Frequência</a>
+                            <a href="{url}Estagiario/freqEdit">Editar Frequência</a>
                         </li>
                     </ul>
                 </div>
@@ -77,7 +86,7 @@
               </div>
               <!-- /.row -->
               <div class="row">
-  		                
+
               </div>
           </div>
         </div>
@@ -102,7 +111,7 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{url}assets/js/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript 
+    <!-- Morris Charts JavaScript
     <script src="{url}assets/js/raphael.min.js"></script>
     <script src="{url}assets/js/morris.min.js"></script>
     <script src="{url}assets/js/morris-data.js"></script>

@@ -23,7 +23,7 @@
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{url}login/loginAsEst">Conselho de Classe</a>
+                <a class="navbar-brand" href="{url}login/loginAsAdm">Conselho de Classe</a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
@@ -31,8 +31,7 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-								<li><a href="{url}Importacao/excel"><i class="fa fa-sign-out fa-fw"></i> Gerar .xls</a>
-                        </li>                    
+                 
                         <li><a href="{url}Login/efetuar_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
@@ -146,7 +145,7 @@
                             <a href="../Permissao/v_tela_listagem">Ajustar permissões de usuário</a>
                         </li>
                                 <li>
-                            <a href="#">Questionários<span class="fa arrow"></span></a>
+                            <a href="../Questionario/v_cadastro">Questionários<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="../Questionario/v_cadastro">Criar questionário</a>
@@ -158,7 +157,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                                 <li>
-                            <a href="#">Turmas e Disciplinas<span class="fa arrow"></span></a>
+                            <a href="../Materia/v_cadastrar_materias">Turmas e Disciplinas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="../Materia/v_cadastrar_materias">Cadastrar disciplinas </a>

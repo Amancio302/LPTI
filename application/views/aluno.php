@@ -8,9 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="alunos" >
+    <meta name="author" content="Alunos" >
 
     <title>Início</title>
+    <link type="text/css" href="{url}assets/js/jquery-ui.css" rel="stylesheet" />
+
     <link href="{url}assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="{url}assets/css/metisMenu.min.css" rel="stylesheet">
     <link href="{url}assets/css/sb-admin-2.css" rel="stylesheet">
@@ -90,45 +92,47 @@
 						$atributos = array('name'=>'formulario_aluno', 'id'=>'formulario_aluno');
 						$btn = array('name'=>'btm_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
 						$ano = date("Y");
-						echo  form_open('Estagiario/aluno', $atributos).
-						form_label("Matricula: ", "txt_matricula").br().
-						form_input('txt_matricula').br().
-						form_label("Nome: ", "txt_nome").br().
-						form_input('txt_nome').br().
-						form_label("Ano: ", "txt_ano").br().
-						form_input(array('name'=>'txt_ano', 'type'=>'number', 'min'=>$ano, 'max'=>1+$ano, 'value'=>$ano)).br().
-						form_label("1° Info Int", "txt_1i").
-						form_radio("Turma", '11', false).
-						form_label("1° Meca Int", "txt_1i").
-						form_radio("Turma", '21', false).
-						form_label("1° Edif Int", "txt_1i").
-						form_radio("Turma", '31', false).
-						form_label("1° Info Sub ", "txt_1i").
-						form_radio("Turma", '41', false).
-						form_label("1° Meca Sub ", "txt_1i").
-						form_radio("Turma", '51', false).
-						form_label("1° Edif Sub", "txt_1i").
-						form_radio("Turma", '61', false).br().
-						form_label("2° Info Int", "txt_1i").
-						form_radio("Turma", '12', false).
-						form_label("2° Meca Int", "txt_1i").
-						form_radio("Turma", '22', false).
-						form_label("2° Edif Int", "txt_1i").
-						form_radio("Turma", '32', false).
-						form_label("2° Info Sub ", "txt_1i").
-						form_radio("Turma", '42', false).
-						form_label("2° Meca Sub ", "txt_1i").
-						form_radio("Turma", '52', false).
-						form_label("2° Edif Sub", "txt_1i").
-						form_radio("Turma", '62', false).br().
-						form_label("3° Info Int", "txt_1i").
-						form_radio("Turma", '13', false).
-						form_label("3° Meca Int", "txt_1i").
-						form_radio("Turma", '23', false).
-						form_label("3° Edif Int", "txt_1i").
-						form_radio("Turma", '33', false).br().
-						form_submit("btn_cadastrar", "Cadastrar", $btn).
-						form_close();
+
+									echo  form_open('Estagiario/aluno', $atributos).
+									form_label("Matricula: ", "txt_matricula").br().
+									form_input('txt_matricula').br().
+									form_label("Nome: ", "txt_nome").br().
+									form_input('txt_nome').br().
+									form_label("Ano: ", "txt_ano").br().
+									form_input(array('name'=>'txt_ano', 'type'=>'number', 'min'=>$ano, 'max'=>1+$ano, 'value'=>$ano)).br().
+									form_label("1° Info Int", "txt_1i").
+									form_radio("Turma", '11', false).
+									form_label("1° Meca Int", "txt_1i").
+									form_radio("Turma", '21', false).
+									form_label("1° Edif Int", "txt_1i").
+									form_radio("Turma", '31', false).
+									form_label("1° Info Sub ", "txt_1i").
+									form_radio("Turma", '41', false).
+									form_label("1° Meca Sub ", "txt_1i").
+									form_radio("Turma", '51', false).
+									form_label("1° Edif Sub", "txt_1i").
+									form_radio("Turma", '61', false).br().
+									form_label("2° Info Int", "txt_1i").
+									form_radio("Turma", '12', false).
+									form_label("2° Meca Int", "txt_1i").
+									form_radio("Turma", '22', false).
+									form_label("2° Edif Int", "txt_1i").
+									form_radio("Turma", '32', false).
+									form_label("2° Info Sub ", "txt_1i").
+									form_radio("Turma", '42', false).
+									form_label("2° Meca Sub ", "txt_1i").
+									form_radio("Turma", '52', false).
+									form_label("2° Edif Sub", "txt_1i").
+									form_radio("Turma", '62', false).br().
+									form_label("3° Info Int", "txt_1i").
+									form_radio("Turma", '13', false).
+									form_label("3° Meca Int", "txt_1i").
+									form_radio("Turma", '23', false).
+									form_label("3° Edif Int", "txt_1i").
+									form_radio("Turma", '33', false).br().
+									form_submit("btn_cadastrar", "Cadastrar", $btn).
+									form_close();
+
 					?>
 					<div class="modal fade" id="erro-modal">
 						<div class="modal-dialog">
@@ -145,6 +149,8 @@
 
 
     <!-- jQuery -->
+
+
     <script src="{url}assets/js/jquery.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(e){
@@ -155,6 +161,7 @@
         });
       });
     </script>
+
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{url}assets/js/bootstrap.min.js"></script>

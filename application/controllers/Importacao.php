@@ -2,38 +2,304 @@
 
 class Importacao extends CI_Controller {
 
-	public function csv() {
-		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment; filename="sampley.csv"');	
+	public function readme() {
+		
+		$dicas = "Dicas para utilizar o sistema de importação";		
+		
+ 		header("Content-type: application/text");   
+   	header("Content-Disposition: attachment; filename=readme.txt");   
+		echo $dicas;
 	}
 	
-	public function excel($id) {
+	public function excel() {
 		$html = "<table>
-						<tr>
+					<tr>
         				<td><b>Matricula</b></td>        
         				<td></td>        
-       				<td><b>Nome</b></td>
-       				<td></td>
-       				<td><b>Situacao</b></td>
-       				<td></td>
-       				<td><b>Turma</b></td>
-       				<td></td>        
+						<td><b>Nome</b></td>
+						<td></td>     
     			    </tr>					 
 					 <tr>
         				<td></td>        
-        				<td>;</td>        
-       				<td></td>
-       				<td>;</td>
-       				<td>1</td>
-       				<td>;</td>
-       				<td>".$id."</td>
-       				<td>;</td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
     			    </tr>
-    			    </table>";
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			    <tr>
+        				<td></td>        
+        				<td>:</td>        
+						<td></td>
+						<td>;</td>       
+    			    </tr>
+    			 </table>";
 
 		// Configurações header para forçar o download
 		header ('Content-type: application/x-msexcel');
-		header ('Content-Disposition: attachment; filename="nome_arquivo.xls"' );
+		header ('Content-Disposition: attachment; filename="importHelper.xls"' );
 
 		echo $html;	
 	}
