@@ -147,7 +147,8 @@
                 redirect('Estagiario/notInsert/'.$id.'/'.$ano);
             }
             else{
-                echo '<script type="text/javascript">alert("A quantidade de notas é diferente da quantidade de alunos");</script>';
+                echo '<script type="text/javascript">alert("A quantidade de notas é diferente da quantidade de alunos");
+						location.href = "http://localhost/LPTI/Estagiario/notInsert/' .$id . '/' . $ano. '";</script>';
             }
         }
 
@@ -220,18 +221,18 @@
                 for($i = 0; $i<count($freq); $i++){
                     $data['FALTAS'] = $freq[$i];
                     if($data['FALTAS'] > 100 or $data['FALTAS'] < 0){
-                        echo '<script type="text/javascript">alert("A frequência não pode ser maior ");</script>';
-                        $this->freqInsert();
+                        echo '<script language="javascript">alert("A frequência não pode ser maior ")</script>';
                     }
                     $data['idALUNO'] = $nomes[$i]->ALUNO_idALUNO;
                     $data['idMATERIA'] = $materia;
                     $data['BIMESTRE'] = $bimestre;
                     $this->db->insert('FREQUENCIA', $data);
+                    redirect('Estagiario/freqInsert/'.$id.'/'.$ano);
                 }
-                redirect('Estagiario/freqInsert/'.$id.'/'.$ano);
             }
             else{
-                echo '<script type="text/javascript">alert("A quantidade de freqências é diferente da quantidade de alunos");</script>';
+                echo '<script type="text/javascript">alert("A quantidade de freqências é diferente da quantidade de alunos");
+						location.href = "http://localhost/LPTI/Estagiario/freqInsert/' .$id . '/' . $ano. '";</script>';
             }
     }
 
@@ -312,4 +313,44 @@
         }
         $this->parser->parse('editarNota', $data);
     }
+    
+    public function alterarNota($id, $ano, $materia, $serie, $curso, $modalidade){
+		$data['url'] = base_url();
+		
+        $this->db->select('*');
+        $this->db->from('ALUNO');
+        $this->db->where('idALUNO', $id);
+        $data['aluno'] = $this->db->get()->result();
+        
+        $data['ano'] = $ano;
+        
+        $data['turma'] = $serie . ' ' . $curso . ' ' . $modalidade;
+        
+        
+        $this->db->select('MATERIA.NOME, MATERIA.idMATERIA');
+        $this->db->from('MATERIA');
+        $this->db->where('MATERIA.idMATERIA', $materia);
+        $data['materia'] = $this->db->get()->result();
+        
+        $this->db->select('NOTA.idNOTA, NOTA.idALUNO, NOTA.idMATERIA, NOTA.NOTA, NOTA.BIMESTRE, TURMA_has_MATERIA.ANO, TURMA_has_MATERIA.TURMA_idTURMA');
+		$this->db->from('NOTA');
+		$this->db->join('TURMA_has_MATERIA', 'TURMA_has_MATERIA.MATERIA_idMATERIA = NOTA.idMATERIA', 'inner');
+		$this->db->where('NOTA.idALUNO', $id);
+		$this->db->where('NOTA.idMATERIA', $materia);$this->input->post('txt_freq');
+		$this->db->where('TURMA_has_MATERIA.ANO', $ano);
+        $data['nota'] = $this->db->get()->result();
+        
+        $this->parser->parse('alterarNota', $data);
+		
+	}
+	
+	public function alteraNotas(){
+		$data['idNOTA'] = $this->input->post('txt_notaId');
+		$data['idALUNO'] = $this->input->post('txt_aluno');
+		$data['idMATERIA'] = $this->input->post('txt_materia');
+		$data['NOTA'] = $this->input->post('txt_nota');
+		$data['BIMESTRE'] = $this->input->post('txt_bim');
+		$this->db->update('NOTA', $data);
+		
+	}
 }

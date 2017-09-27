@@ -107,7 +107,7 @@
                             "<th>Curso</th>".
                             "<th>Modalidade</th>".
                             "<th>Ano</th>".
-                            "<th>".$materia[0]->NOME."</th>".
+                            "<th>".$materia[0]->NOME."</th> <th></th>".
                             "</tr></thead><tbody>";
                             $cont = 0;
                             foreach($TURMA_has_ALUNO as $band)
@@ -121,6 +121,8 @@
                                 "<td>".$TURMA_has_ALUNO[$i]->MODALIDADE. "</td>".
                                 "<td>".$TURMA_has_ALUNO[$i]->ANO. "</td>".
                                 "<td>".$NOTAS[$i]."</td>".
+                                "<td>" . anchor('/Estagiario/alterarNota/'.$TURMA_has_ALUNO[$i]->idALUNO.'/'. $TURMA_has_ALUNO[$i]->ANO. '/'. $materia[0]->idMATERIA . '/' .$TURMA_has_ALUNO[$i]->SERIE. '/' . urlencode($TURMA_has_ALUNO[$i]->NOME_CURSO). '/' . $TURMA_has_ALUNO[$i]->MODALIDADE
+                                , ' Alterar ', 'class="btn btn-warning"').
                                 "</tr>";
                             }
                             echo "</tbody></table>";
