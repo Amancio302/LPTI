@@ -36,3 +36,15 @@ td{
 #btn{
 	border: none;
 }
+
+#danger{
+	background-color: red;
+}
+
+#warning{
+	background-color: yellow;
+}
+
+#all-right{
+	background-color: green;
+}

@@ -144,7 +144,7 @@
 													 form_hidden('idMATERIA', $MATERIA[0]->idMATERIA).
 													 form_label("Disciplina: ", "txt_nome").br().
 													 form_input('txt_nome', $MATERIA[0]->NOME).br().
-													 form_label("Quantidade de Aulas: ", "txt_qtd").br().
+													 form_label("Horas-aula: ", "txt_qtd").br().
 													 form_input('txt_qtd', $MATERIA[0]->QTD_AULAS).br().
 													 form_submit("btn_cadastrar", "Salvar Alterações", $btn).br().
 													 form_close().br().

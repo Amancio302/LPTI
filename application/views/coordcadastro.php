@@ -13,7 +13,7 @@
 													//$d1 = $this->db->get('CURSO');
 													$atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
 													$btn = array('name'=>'btm_cadastrar', 'id'=>'btn_cadastro', 'class'=>'btn btn-lg btn-primary');
-													echo  form_open('cadastro/cadastro', $atributos).
+													echo  form_open('cadastro/cadastroCoord', $atributos).
 																form_label("Login: ", "txt_login").br().
 																form_input('txt_login').br().
 																form_label("Senha: ", "txt_senha").br().

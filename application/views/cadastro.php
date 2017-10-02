@@ -200,7 +200,9 @@
 																form_radio("txt_tipo", '2', false).
 																form_label("Coordenador Mecatrônica", "txt_tipo").br().
 																form_radio("txt_tipo", '3', false).
-																form_label("Coordenador Edficações", "txt_tipo").br();
+																form_label("Coordenador Edficações", "txt_tipo").br().
+																form_radio("txt_tipo", '6', false).
+																form_label("Coordenador Formação Geral", "txt_tipo").br();
 																
 																/*$data = array();
 																foreach($curso as $c){

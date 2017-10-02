@@ -101,6 +101,7 @@
                             form_hidden('txt_aluno', $aluno[0]->idALUNO).
                             form_hidden('txt_turma', $nota[$i]->TURMA_idTURMA).
                             form_hidden('txt_materia', $materia[0]->idMATERIA).
+                            form_hidden('txt_ano', $materia[0]->idMATERIA).
                             form_hidden('txt_notaId', $nota[$i]->idNOTA).
                             form_label("Nota: ", "txt_nota").br().
                             form_input('txt_nota', $nota[$i]->NOTA).br().

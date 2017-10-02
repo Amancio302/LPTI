@@ -37,16 +37,45 @@
 					$this->db->insert('USUARIO', $data);
 					$data['url'] = base_url();
 					$this->parser->parse('telaAdm', $data);
+				}
+				else{
+					$data['modal'] = "$(window).on('load',function(){
+									$('#erro-modal').modal('show');
+									});";
+				 $data['url'] = base_url();
+				 $this->parser->parse('cadastro', $data);
+				}
+			}
 		}
-		else{
-			$data['modal'] = "$(window).on('load',function(){
-							$('#erro-modal').modal('show');
-							});";
-		 $data['url'] = base_url();
-		 $this->parser->parse('cadastro', $data);
+		
+		public function cadastroCoord(){
+			$data['LOGIN'] = $this->input->post('txt_login');
+			$data['SENHA'] = $this->input->post('txt_senha');
+			$data['TIPO'] = $this->input->post('txt_tipo');
+			$senha = $this->input->post('txt_confirmarsenha');
+			if(!$this->db->where('LOGIN', $data['LOGIN'])){
+			 $data['modal'] = "$(window).on('load',function(){
+							  $('#erro-modal').modal('show');
+							  });";
+			 $data['url'] = base_url();
+			 $this->parser->parse('coordcadastro', $data);
+			}
+			else{
+				if(($data['SENHA'] == $senha)&&($senha != "")){
+					$data['SENHA'] = sha1($data['SENHA']);
+					$this->db->insert('USUARIO', $data);
+					$data['url'] = base_url();
+					redirect(base_url('login/loginAsCoord/'.$this->session->userdata('tipo')));
+				}
+				else{
+					$data['modal'] = "$(window).on('load',function(){
+									$('#erro-modal').modal('show');
+									});";
+				 $data['url'] = base_url();
+				 $this->parser->parse('coordcadastro', $data);
+				}
+			}
 		}
-		}
-	}
 
 		public function editar(){
 			$data['USUARIO'] = $this->db->get('USUARIO')->result();
@@ -62,7 +91,11 @@
 			$this->db->where('idUSUARIO', $id);
 			$data['USUARIO'] = $this->db->get('USUARIO')->result();
 			$data['url'] = base_url();
-			$this->parser->parse('editor', $data);
+			$x = $this->session->userdata('tipo');
+			if($x == '0')
+				$this->parser->parse('editor', $data);
+			else
+				$this->parser->parse('coordEditor', $data);
 		}
 
 		public function edit(){
@@ -90,7 +123,10 @@
 		public function excluir($id){
 			$this->db->where('USUARIO.idUSUARIO', $id);
 			if($this->db->delete('USUARIO')){
-				redirect('Login/loginAsAdm');
+				if($tipo = $this->session->userdata('tipo') == 0)
+					redirect('Login/loginAsAdm');
+				else
+					redirect(base_url('login/loginAsCoord/'.$this->session->userdata('tipo')));
 			}
 		}
 

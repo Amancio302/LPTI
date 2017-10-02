@@ -192,7 +192,9 @@
 													 form_radio("txt_tipo", '2', false).
 													 form_label("Coordenador Mecatrônica", "txt_tipo").br().
 													 form_radio("txt_tipo", '3', false).
-													 form_label("Coordenador Edficações", "txt_tipo").br().br().
+													 form_label("Coordenador Edificações", "txt_tipo").br().
+													 form_radio("txt_tipo", '6', true).
+													form_label("Coordenador Formação Geral", "txt_tipo").br().br().
 													 form_submit("btn_cadastrar", "Salvar Alterações", $btn).br().
 													 form_close().br().
 											     anchor('../Login/loginAsAdm', "Cancelar", array('class'=>"btn btn-danger", 'id'=>"botao"));

@@ -39,7 +39,7 @@
 								echo  form_open('materia/cadastro_materias', $atributos).
 									form_label("Disciplina: ", "txt_materia").br().
 									form_input('txt_materia').br().
-									form_label("Quantidade de Aulas: ", "txt_qtd").br().
+									form_label("Horas-aula: ", "txt_qtd").br().
 									form_input('txt_qtd').br().br().
 									form_submit("btn_cadastrar", "Cadastrar", $btn).
 									form_close();

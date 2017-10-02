@@ -24,12 +24,12 @@ class Login extends CI_Controller {
 			$array=array("login"=>true, "tipo"=>$data[0]['TIPO'], "bool"=>true);
 			$this->session->set_userdata($array);
 			if($data[0]['TIPO'] == 0)
-          $this->loginAsAdm();
+				$this->loginAsAdm();
 			else if($data[0]['TIPO'] == 4)
 				$this->loginAsEst();
 			else if($data[0]['TIPO'] == 5)
 				$this->loginAsProf($data[0]['idUSUARIO']);
-			else{
+			else if($data[0]['TIPO']){
 				$this->loginAsCoord($data[0]['TIPO']);
 			}
 		}

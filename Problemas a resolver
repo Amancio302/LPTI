@@ -1,0 +1,312 @@
+Até Segunda
+
+1 - Modificar funcionamento dos parâmetros de risco - 100%
+
+2 - Tratar Situação - 100%
+
+3 - Criar Tela do Aluno
+
+4 - Alterar funções de cada usuário
+5 - Arrumar Todas as barras laterais
+
+6 - Arrumar erro Ao apagar usuário como coordenador ele volta para root - 100%
+7 - Arrumar erro Ao cadastrar usuário como coordenador volta para root - 100%
+
+8 - Criar Edição de frequencia
+
+Até Terça
+
+1 - Arrumar erro Saida triplicada para nota - 100%
+
+2 - Arrumar erro Entrada duplicada para matrícula - 100%
+
+3 - Adicionar coordenador formação geral - 100%
+4 - Concluir Listagem de alunos para coordenador - 100%
+
+5 - Arrumar erro Ao editar usuário como coordenador, ele pode editar mais do que sua permissão permite - 100%
+
+6- Passar alunos de ano
+
+7- Trocar senha
+
+8- Arrumar URLs com problema em todas as páginas
+
+9- Inserir Parâmetro
+
+10 - Excluir Parâmetro
+
+11- Login as est como coord ao clicar em CONSELHO DE CLASSE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$this->db->select('NOTA.NOTA, NOTA.idNOTA, NOTA.idALUNO, TURMA_has_ALUNO.TURMA_idTURMA, MATERIA.idMATERIA');
+$this->db->from('NOTA');
+$this->db->join('TURMA_has_ALUNO', 'NOTA.idALUNO = TURMA_has_ALUNO.ALUNO_idALUNO', 'inner');
+$this->db->join('ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
+$this->db->join('MATERIA', 'MATERIA.idMATERIA = NOTA.idMATERIA', 'inner');
+$this->db->where('NOTA.idALUNO', $band->idALUNO);
+$notas = $this->db->get()->result();
+$soma = 0;
+$foreach($notas->idMATERIA as $materia){
+    
+}
+    
+
+
+
+/*
+SELECT NOTA.NOTA, NOTA.idNOTA, NOTA.idALUNO, TURMA_has_ALUNO.TURMA_idTURMA, MATERIA.idMATERIA
+FROM NOTA
+INNER JOIN TURMA_has_ALUNO ON NOTA.idALUNO = TURMA_has_ALUNO.ALUNO_idALUNO
+INNER JOIN ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO
+INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+WHERE NOTA.idALUNO = 201518110200
+AND MATERIA.idMATERIA = 2
+*/
+/*
+SELECT FREQUENCIA.FALTAS, FREQUENCIA.idFREQUENCIA, FREQUENCIA.idALUNO, TURMA_has_ALUNO.TURMA_idTURMA, MATERIA.idMATERIA
+FROM FREQUENCIA
+INNER JOIN TURMA_has_ALUNO ON FREQUENCIA.idALUNO = TURMA_has_ALUNO.ALUNO_idALUNO
+INNER JOIN ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO
+INNER JOIN MATERIA ON MATERIA.idMATERIA = FREQUENCIA.idMATERIA
+WHERE FREQUENCIA.idALUNO = 201518110200
+AND MATERIA.idMATERIA = 2
+*/
+/*
+SELECT *
+FROM PARAMETRO_DE_RISCO
+WHERE PARAMETRO_DE_RISCO.idTURMA = 13
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT NOTA.NOTA, NOTA.idALUNO, TURMA_has_ALUNO.TURMA_idTURMA, PARAMETRO_DE_RISCO.NOTA, ALUNO.idALUNO, MATERIA.idMATERIA, NOTA.idNOTA FROM NOTA 
+INNER JOIN TURMA_has_ALUNO ON NOTA.idALUNO = TURMA_has_ALUNO.ALUNO_idALUNO 
+INNER JOIN PARAMETRO_DE_RISCO ON TURMA_has_ALUNO.TURMA_idTURMA = PARAMETRO_DE_RISCO.idTURMA 
+INNER JOIN ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO 
+INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--CONSULTA DE NOTA DO PARAMETRO--
+
+$this->db->select(*);
+$this->db->from('PARAMETRO_DE_RISCO');
+$this->db->where('PARAMETRO_DE_RISCO.idTURMA', $id);
+
+SELECT *
+FROM PARAMETRO_DE_RISCO
+WHERE PARAMETRO_DE_RISCO.idTURMA = $id
+$parametros =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--CONSULTA DE ALUNOS--
+
+$this->db->select('ALUNO.NOME AS NOME_ALUNO, ALUNO.idALUNO, TURMA_has_ALUNO.ANO, TURMA.idCURSO, CURSO.idCURSO, TURMA.SERIE, TURMA.MODALIDADE, MODALIDADE.idMODALIDADE, MODALIDADE.MODALIDADE, CURSO.NOME AS NOME_CURSO');
+$this->db->from('ALUNO');
+$this->db->join('TURMA_has_ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
+$this->db->join('TURMA', 'TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA', 'inner');
+$this->db->join('CURSO', 'CURSO.idCURSO = TURMA.idCURSO', 'inner');
+$this->db->join('MODALIDADE', 'CURSO.MODALIDADE = MODALIDADE.idMODALIDADE', 'inner');
+$ano = date("Y");
+if($id !=0)
+    $this->db->where('TURMA.idTURMA', $id);
+else if($mod !=0 && $curso == 0)
+    $this->db->where('CURSO.MODALIDADE', $mod);
+else if($curso != 0){
+    $this->db->where('CURSO.MODALIDADE', $mod);
+    $this->db->like('TURMA.idTURMA', $curso, 'after');
+}
+$this->db->where('TURMA_has_ALUNO.ANO', $ano);
+$data['TURMA_has_ALUNO'] = $this->db->get()->result();
+
+
+
+
+
+
+
+foreach($data['TURMA_has_ALUNO'] as $turma_has_aluno){
+    $data['TURMA_has_ALUNO']->SITUACAO = 0;
+
+    --CONSULTA DE NOTAS--
+
+    $this->db->select('NOTA.NOTA, NOTA.idALUNO, TURMA_has_ALUNO.TURMA_idTURMA, ALUNO.idALUNO, MATERIA.idMATERIA, NOTA.idNOTA, NOTA.BIMESTRE FROM NOTA');
+    $this->db->join('TURMA_has_ALUNO', 'NOTA.idALUNO = TURMA_has_ALUNO.ALUNO_idALUNO', 'inner');
+    $this->db->join('ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
+    $this->db->join('MATERIA', 'MATERIA.idMATERIA = NOTA.idMATERIA', 'inner');
+    $data['TURMA_has_NOTA'] = 
+    
+    --ZERAR CONTADOR DA SOMA--
+
+    foreach($data['TURMA_has_NOTA'] as turma_has_nota){
+        $soma[$turma_has_nota->idMATERIA] = 0;
+    }
+    
+    $bimestre = 0;
+
+    --SOMA DE NOTAS DE MESMA MATERIA--
+    --ENCONTRAR O MAIOR BIMESTRE DA CONSULTA--
+
+    foreach($data['TURMA_has_NOTA'] as $turma_has_nota){
+        $soma[$turma_has_nota->idMATERIA] += $turma_has_nota->NOTA;
+        if($turma_has_nota->BIMESTRE > $bimestre)
+            $bimestre = $turma_has_nota->BIMESTRE;
+    }
+
+    
+
+    foreach($parametros as parametro)
+        $CONTADOR = 0
+        --MULTIPLICAR A NOTA MÀXIMA DO BIMESTRE PELA % DA NOTA DO PARAMETRO--
+
+        if($bimestre == 1)
+            $maxima = 2*parametro/10;
+        else if($bimestre == 2)
+            $maxima = 3*parametro/10;
+        if($bimestre == 3)
+            $maxima = 5*parametro/10;
+        if($bimestre == 4)
+            $maxima = parametro;
+        foreach($soma as $somas){
+            --CHECAR SE A SOMA É MENOR QUE A DO PARAMETRO--
+
+            if($soma < $maxima)
+                $CONTADOR++;
+        }
+
+        --CHECAR SE CONTADOR TEM VALOR >= AO LIMITE DE MATERIAS DO PARAMETRO DE RISCO--
+
+        if($contador >= $parametro->materias){
+            if($data['TURMA_has_ALUNO']->SITUACAO == 0){
+                $data['TURMA_has_ALUNO']->SITUACAO = 'danger';
+            }    
+        }
+        else
+            $data['TURMA_has_ALUNO']->SITUACAO = 'all-right';
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Situação | Matrícula | Nome | Curso | Série | Modalidade | Ano
+
+Situação   -> TODAS AS NOTAS DE RELACIONADAS A UMA MATRÍCULA, SOMAR AS DE MESMA MATÉRIA, FAZER A MÉDIA, COMPARAR COM O PARÂMETRO DE RISCO, SE FOR MENOR SOMAR NUM CONTADOR, SE BATER O PARÂMETRO DE RISCO DE QUANTIDADE DE MATÉRIAS, MUDAR O ID DA <TD> PARA 'DANGER', SE NAO MUDAR O ID DA <TD> PARA ALL-RIGHT
+
+Matrícula  -> TURMA_has_ALUNO -> ALUNO
+
+Nome       -> TURMA_has_ALUNO -> ALUNO
+
+Curso      -> TURMA_has_ALUNO -> TURMA -> CURSO
+
+Série      -> TURMA_has_ALUNO -> TURMA
+
+Modalidade -> TURMA_has_ALUNO -> TURMA -> Modalidade
+
+Ano        -> TURMA_has_ALUNO

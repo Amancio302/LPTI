@@ -28,13 +28,18 @@
             $dat['TURMA_idTURMA'] = $this->input->post('Turma');
             $dat['ALUNO_idALUNO'] = $data['idALUNO'];
             $dat['ANO'] = $this->input->post('txt_ano');
+            $this->db->from('ALUNO');
+            $this->db->where('ALUNO.idALUNO', $data['idALUNO']);
+            $x = $this->db->get()->result();
+            $x = count($x);
             if(($data['idALUNO'] <= 100000000000) or ($data['NOME'] == "") or ($dat['TURMA_idTURMA'] == "") or ($dat['ANO'] == "")){
-                $da['modal'] = "$(window).on('load',function(){
-                              $('#erro-modal').modal('show');
-                              });";
-                $da['url'] = base_url();
-                $this->parser->parse('aluno', $da);
+                echo '<script type="text/javascript">alert("Matrícula inválida");
+						location.href = "http://localhost/LPTI/Estagiario/aluCad/";</script>';
             }
+            else if($x != 0){
+				echo '<script type="text/javascript">alert("Essa matrícula já existe");
+						location.href = "http://localhost/LPTI/Estagiario/aluCad/";</script>';
+			}
             else{
                 $da['modal'] = " ";
                 $this->db->insert('ALUNO', $data);
@@ -128,6 +133,8 @@
 
         public function nota($id, $ano){
             $notas = explode(',', $this->input->post('txt_notas'));
+            for($i = 0; $i < count($notas); $i++)
+				$notas[$i] = trim($notas[$i]);
             $materia = (string)$this->input->post('txt_materia');
             $bimestre = (string)$this->input->post('txt_bim');
             $this->db->select('TURMA_has_ALUNO.ALUNO_idALUNO, ALUNO.idALUNO, ALUNO.NOME');
@@ -136,8 +143,8 @@
             $this->db->where('TURMA_idTURMA', $id);
             $this->db->order_by('ALUNO.NOME', 'ASC');
             $nomes = $this->db->get()->result();
-            if(count($notas)==count($nomes)){
-                for($i = 0; $i<count($notas); $i++){
+            if((count($notas)-1)==count($nomes)){
+                for($i = 0; $i<(count($notas)-1); $i++){
                     $data['NOTA'] = $notas[$i];
                     $data['idALUNO'] = $nomes[$i]->ALUNO_idALUNO;
                     $data['idMATERIA'] = $materia;
@@ -208,6 +215,10 @@
 
         public function freq($id, $ano){
             $freq = explode(',', $this->input->post('txt_freq'));
+            for($i = 0; $i < count($freq); $i++){
+				$freq[$i] = trim($freq[$i]);
+				echo $freq[$i] .br();
+			}
             $materia = (string)$this->input->post('txt_materia');
             $bimestre = (string)$this->input->post('txt_bim');
             $this->db->select('TURMA_has_ALUNO.ALUNO_idALUNO, ALUNO.idALUNO, ALUNO.NOME');
@@ -217,18 +228,19 @@
             $this->db->where('TURMA_has_ALUNO.ANO', $ano);
             $this->db->order_by('ALUNO.NOME', 'ASC');
             $nomes = $this->db->get()->result();
-            if(count($freq)==count($nomes)){
-                for($i = 0; $i<count($freq); $i++){
+            for($i = 0; $i < count($nomes); $i++){
+				echo $nomes[$i]->NOME .br();
+			}
+            if((count($freq)-1)==count($nomes)){
+                for($i = 0; $i<(count($freq)-1); $i++){
                     $data['FALTAS'] = $freq[$i];
-                    if($data['FALTAS'] > 100 or $data['FALTAS'] < 0){
-                        echo '<script language="javascript">alert("A frequência não pode ser maior ")</script>';
-                    }
                     $data['idALUNO'] = $nomes[$i]->ALUNO_idALUNO;
                     $data['idMATERIA'] = $materia;
                     $data['BIMESTRE'] = $bimestre;
-                    $this->db->insert('FREQUENCIA', $data);
-                    redirect('Estagiario/freqInsert/'.$id.'/'.$ano);
+                    echo $this->db->insert('FREQUENCIA', $data);
+                    echo $i.br();
                 }
+                redirect('Estagiario/freqInsert/'.$id.'/'.$ano);
             }
             else{
                 echo '<script type="text/javascript">alert("A quantidade de freqências é diferente da quantidade de alunos");
@@ -266,7 +278,7 @@
     }
 
     public function notMatEditar($id, $ano){
-        $this->db->select('ALUNO.SITUACAO, ALUNO.NOME AS NOME_ALUNO, ALUNO.idALUNO, TURMA_has_ALUNO.ANO, TURMA.idCURSO, CURSO.idCURSO, TURMA.SERIE, TURMA.MODALIDADE, MODALIDADE.idMODALIDADE, MODALIDADE.MODALIDADE, CURSO.NOME AS NOME_CURSO');
+        $this->db->select('ALUNO.NOME AS NOME_ALUNO, ALUNO.idALUNO, TURMA_has_ALUNO.ANO, TURMA.idCURSO, CURSO.idCURSO, TURMA.SERIE, TURMA.MODALIDADE, MODALIDADE.idMODALIDADE, MODALIDADE.MODALIDADE, CURSO.NOME AS NOME_CURSO, TURMA.idTURMA');
         $this->db->from('ALUNO');
         $this->db->join('TURMA_has_ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
         $this->db->join('TURMA', 'TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA', 'inner');
@@ -296,25 +308,34 @@
         $qtdAlunos = 0;
         foreach($data['TURMA_has_ALUNO'] as $band)
             $qtdAlunos++;
+        $bimestre = $this->input->post('txt_bimestre');
         for($i = 0; $i < $qtdAlunos; $i++){
             $data['NOTAS'][$i] = 0;
-            $this->db->select('NOTA.NOTA, ALUNO.idALUNO, MATERIA.idMATERIA');
+            $this->db->select('NOTA.NOTA, ALUNO.idALUNO, MATERIA.idMATERIA, NOTA.BIMESTRE');
             $this->db->from('NOTA');
             $this->db->join('ALUNO', 'ALUNO.idALUNO = NOTA.idALUNO', 'inner');
             $this->db->join('TURMA_has_ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
             $this->db->join('MATERIA', 'MATERIA.idMATERIA = NOTA.idMATERIA', 'inner');
-            $this->db->join('TURMA_has_MATERIA', 'TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA', 'inner');
             $this->db->where('ALUNO.idALUNO', $data['TURMA_has_ALUNO'][$i]->idALUNO);
             $this->db->where('MATERIA.idMATERIA', $materia);
+            if($bimestre == 12){
+				$where = "NOTA.BIMESTRE = 1 OR NOTA.BIMESTRE = 2";
+				$this->db->where($where);
+			}
+			else if($bimestre == 34){
+				$where = "NOTA.BIMESTRE = 3 OR NOTA.BIMESTRE = 4";
+				$this->db->where($where);
+			}
+			else if($bimestre != 1234)
+				$this->db->where('NOTA.BIMESTRE', $bimestre);
             $Notas = $this->db->get()->result();
-            foreach($Notas as $band){
+            foreach($Notas as $band)
                 $data['NOTAS'][$i] += $band->NOTA;
-            }
         }
         $this->parser->parse('editarNota', $data);
     }
     
-    public function alterarNota($id, $ano, $materia, $serie, $curso, $modalidade){
+    public function alterarNota($id, $ano, $materia, $serie, $curso, $modalidade, $turma){
 		$data['url'] = base_url();
 		
         $this->db->select('*');
@@ -338,6 +359,7 @@
 		$this->db->where('NOTA.idALUNO', $id);
 		$this->db->where('NOTA.idMATERIA', $materia);$this->input->post('txt_freq');
 		$this->db->where('TURMA_has_MATERIA.ANO', $ano);
+		$this->db->where('TURMA_has_MATERIA.TURMA_idTURMA', $turma);
         $data['nota'] = $this->db->get()->result();
         
         $this->parser->parse('alterarNota', $data);
@@ -345,12 +367,14 @@
 	}
 	
 	public function alteraNotas(){
-		$data['idNOTA'] = $this->input->post('txt_notaId');
+		$id = $this->input->post('txt_notaId');
 		$data['idALUNO'] = $this->input->post('txt_aluno');
 		$data['idMATERIA'] = $this->input->post('txt_materia');
 		$data['NOTA'] = $this->input->post('txt_nota');
 		$data['BIMESTRE'] = $this->input->post('txt_bim');
+		$this->db->from('NOTA');
+		$this->db->where('NOTA.idNOTA', $id);
 		$this->db->update('NOTA', $data);
-		
+		redirect(base_url('login/loginAsEst'));
 	}
 }

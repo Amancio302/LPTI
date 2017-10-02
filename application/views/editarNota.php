@@ -95,12 +95,26 @@
                                 else
                                         $i++;
                             }
-                            echo br() . form_submit("btn_cadastrar", "Escolher Matéria", $btn).
+                            echo br() . 
+                            form_radio('txt_bimestre', 1, true). " " .
+                            form_label("1º Bimestre", "txt_bimestre").
+                            form_radio('txt_bimestre', 2, true). " " .
+                            form_label("2º Bimestre", "txt_bimestre").
+                            form_radio('txt_bimestre', 3, true). " " .
+                            form_label("3º Bimestre", "txt_bimestre").
+                            form_radio('txt_bimestre', 4, true). " " .
+                            form_label("4º Bimestre", "txt_bimestre").
+                            form_radio('txt_bimestre', 12, true). " " .
+                            form_label("1º Semestre", "txt_bimestre").
+                            form_radio('txt_bimestre', 34, true). " " .
+                            form_label("2º Semestre", "txt_bimestre").
+                            form_radio('txt_bimestre', 1234, true). " " .
+                            form_label("Ano todo", "txt_bimestre").br().
+                            form_submit("btn_cadastrar", "Escolher Matéria", $btn).
                             form_close();
                             echo br().
                             "<table id='myTable'>".
                             "<thead><tr>".
-                            "<th>Situação</th>".
                             "<th>Matricula</th>".
                             "<th>Nome</th>".
                             "<th>Serie</th>".
@@ -113,7 +127,7 @@
                             foreach($TURMA_has_ALUNO as $band)
                                 $cont++;
                             for($i=0; $i<$cont; $i++){
-                                echo "<tr><td></td>".
+                                echo "<tr>".
                                 "<td>".$TURMA_has_ALUNO[$i]->idALUNO. "</td>".
                                 "<td>".$TURMA_has_ALUNO[$i]->NOME_ALUNO. "</td>".
                                 "<td>".$TURMA_has_ALUNO[$i]->SERIE. "</td>".
@@ -121,7 +135,7 @@
                                 "<td>".$TURMA_has_ALUNO[$i]->MODALIDADE. "</td>".
                                 "<td>".$TURMA_has_ALUNO[$i]->ANO. "</td>".
                                 "<td>".$NOTAS[$i]."</td>".
-                                "<td>" . anchor('/Estagiario/alterarNota/'.$TURMA_has_ALUNO[$i]->idALUNO.'/'. $TURMA_has_ALUNO[$i]->ANO. '/'. $materia[0]->idMATERIA . '/' .$TURMA_has_ALUNO[$i]->SERIE. '/' . urlencode($TURMA_has_ALUNO[$i]->NOME_CURSO). '/' . $TURMA_has_ALUNO[$i]->MODALIDADE
+                                "<td>" . anchor('/Estagiario/alterarNota/'.$TURMA_has_ALUNO[$i]->idALUNO.'/'. $TURMA_has_ALUNO[$i]->ANO. '/'. $materia[0]->idMATERIA . '/' .$TURMA_has_ALUNO[$i]->SERIE. '/' . urlencode($TURMA_has_ALUNO[$i]->NOME_CURSO). '/' . $TURMA_has_ALUNO[$i]->MODALIDADE . '/' . $TURMA_has_ALUNO[$i]->idTURMA
                                 , ' Alterar ', 'class="btn btn-warning"').
                                 "</tr>";
                             }
