@@ -13,10 +13,15 @@
 		public function cadastrar(){
 			$data['url'] = base_url();
 			$x = $this->session->userdata('tipo');
-			if($x == '0')
+			if($x == '0'){
+				$this->parser->parse('ajax', $data);
 				$this->parser->parse('cadastro', $data);
-			else
-				$this->parser->parse('coordcadastro', $data);
+			}
+			else{
+				$dat['Tipo'] = $this->session->userdata('tipo');
+				$this->parser->parse('ajaxCoord', $dat);
+				$this->parser->parse('Coordenador/coordcadastro', $data);
+			}
 		}
 
 		public function cadastro(){
@@ -29,21 +34,39 @@
 							  $('#erro-modal').modal('show');
 							  });";
 			 $data['url'] = base_url();
-			 $this->parser->parse('cadastro', $data);
+			 $dat['Tipo'] = $this->session->userdata('tipo');
+			 if($dat['Tipo'] == 0)
+				$this->parser->parse('ajax', $data);
+			else
+				$this->parser->parse('ajaxCoord', $dat);
+			$this->parser->parse('cadastro', $data);
 			}
 			else{
 				if(($data['SENHA'] == $senha)&&($senha != "")){
 					$data['SENHA'] = sha1($data['SENHA']);
 					$this->db->insert('USUARIO', $data);
 					$data['url'] = base_url();
-					$this->parser->parse('telaAdm', $data);
+					$dat['Tipo'] = $this->session->userdata('tipo');
+					if($dat['Tipo'] == 0){
+						$this->parser->parse('ajax', $data);
+						$this->parser->parse('telaAdm', $data);
+					}
+					else{
+						$this->parser->parse('ajaxCoord', $dat);
+						$this->parser->parse('telaCoord', $data);
+					}
 				}
 				else{
 					$data['modal'] = "$(window).on('load',function(){
 									$('#erro-modal').modal('show');
 									});";
 				 $data['url'] = base_url();
-				 $this->parser->parse('cadastro', $data);
+				 $dat['Tipo'] = $this->session->userdata('tipo');
+				if($dat['Tipo'] == 0)
+					$this->parser->parse('ajax', $data);
+				else
+					$this->parser->parse('ajaxCoord', $dat);
+				$this->parser->parse('cadastro', $data);
 				}
 			}
 		}
@@ -58,7 +81,9 @@
 							  $('#erro-modal').modal('show');
 							  });";
 			 $data['url'] = base_url();
-			 $this->parser->parse('coordcadastro', $data);
+			 $dat['Tipo'] = $this->session->userdata('tipo');
+			 $this->parser->parse('ajaxCoord', $dat);
+			 $this->parser->parse('Coordenador/coordcadastro', $data);
 			}
 			else{
 				if(($data['SENHA'] == $senha)&&($senha != "")){
@@ -72,7 +97,9 @@
 									$('#erro-modal').modal('show');
 									});";
 				 $data['url'] = base_url();
-				 $this->parser->parse('coordcadastro', $data);
+				$dat['Tipo'] = $this->session->userdata('tipo');
+			 $this->parser->parse('ajaxCoord', $dat);
+				 $this->parser->parse('Coordenador/coordcadastro', $data);
 				}
 			}
 		}
@@ -80,11 +107,16 @@
 		public function editar(){
 			$data['USUARIO'] = $this->db->get('USUARIO')->result();
 			$data['url'] = base_url();
-			$x = $this->session->userdata('tipo');
-			if($x == '0')
+			$dat['Tipo'] = $this->session->userdata('tipo');
+			if($dat['Tipo'] == '0'){
+			 $this->parser->parse('ajax', $data);
 				$this->parser->parse('editar', $data);
-			else
-				$this->parser->parse('coordeditar', $data);
+			}
+			else{
+				$dat['Tipo'] = $this->session->userdata('tipo');
+			 $this->parser->parse('ajaxCoord', $dat);
+				$this->parser->parse('Coordenador/coordeditar', $data);
+			}
 		}
 
 		public function editor($id){
@@ -92,10 +124,15 @@
 			$data['USUARIO'] = $this->db->get('USUARIO')->result();
 			$data['url'] = base_url();
 			$x = $this->session->userdata('tipo');
-			if($x == '0')
+			if($x == '0'){
+				$this->parser->parse('ajax', $data);
 				$this->parser->parse('editor', $data);
-			else
-				$this->parser->parse('coordEditor', $data);
+			}
+			else{
+				$dat['Tipo'] = $this->session->userdata('tipo');
+				$this->parser->parse('ajaxCoord', $dat);
+				$this->parser->parse('Coordenador/coordEditor', $data);
+			}
 		}
 
 		public function edit(){
@@ -109,6 +146,7 @@
 			$this->db->where('idUSUARIO', $idUSUARIO);
 			$this->db->update('USUARIO', $data);
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('telaAdm', $data);
 		}
 		else{
@@ -116,7 +154,8 @@
 							$('#erro-modal').modal('show');
 							});";
 		$data['url'] = base_url();
-		 $this->parser->parse('cadastro', $data);
+		$this->parser->parse('ajaxCoord');
+		$this->parser->parse('cadastro', $data);
 		}
 		}
 
@@ -136,6 +175,7 @@
 			$this->db->where('idUSUARIO', $idUSUARIO);
 			$this->db->update('USUARIO', $data);
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('telaAdm', $data);
 		}
 		else{
@@ -143,47 +183,8 @@
 							$('#erro-modal').modal('show');
 							});";
 		$data['url'] = base_url();
-		 $this->parser->parse('cadastro', $data);
+		$this->parser->parse('ajax', $data);
+		$this->parser->parse('cadastro', $data);
 		}
 	}
-	
-	public function addCurso(){
-		$data['url'] = base_url();
-		$this->parser->parse('addCurso', $data);
-	}
-	
-	public function addCurso1(){
-		$nome = $this->input->post('txt_curso');
-		$int = $this->input->post('Int');
-		$sub = $this->input->post('Sub');
-		if($int != ''){
-			$data['NOME'] = $nome." ".$int;
-			if(!$this->db->where('NOME', $data['NOME'])){
-				$this->db->insert('CURSO', $data);
-			}
-			else{
-				$data['url'] = base_url();
-				$data['modal'] = "$(window).on('load',function(){
-							$('#erro-modal').modal('show');
-							});";
-			}
-		}
-		if($sub != ''){
-			$data['NOME'] = $nome." ".$sub;
-			if(!$this->db->where('NOME', $data['NOME'])){
-				$this->db->insert('CURSO', $data);
-			}
-			else{
-				$data['url'] = base_url();
-				$data['modal'] = "$(window).on('load',function(){
-							$('#erro-modal').modal('show');
-							});";
-			}
-		}
-		$data['url'] = base_url();
-		$this->parser->parse('telaAdm', $data);
-	}
-
-	
-
 }

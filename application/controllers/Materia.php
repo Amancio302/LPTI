@@ -13,6 +13,7 @@
 
 		public function index() {
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('telaAdm', $data);
 		}
 
@@ -24,12 +25,14 @@
 		public function v_cadastrar_materias(){
 			$data['TURMA'] = $this->db->get('TURMA')->result();
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('Materia/cadastro_materias', $data);
 		}		
 		
 		public function v_listar_materias(){
 			$data['MATERIA'] = $this->db->get('MATERIA')->result();
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('Materia/listar_materias', $data);
 		}
 		
@@ -37,6 +40,7 @@
 			$this->db->where('idMATERIA', $id);
 			$data['MATERIA'] = $this->db->get('MATERIA')->result();
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('Materia/editar_materias', $data);
 		}
 		
@@ -44,6 +48,7 @@
 			$data['MATERIA'] = $this->db->get('MATERIA')->result();
 			
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('Materia/listar_materiasII', $data);
 		}
 		
@@ -51,6 +56,7 @@
 			$this->db->where('idMATERIA', $id);
 			$data['MATERIA'] = $this->db->get('MATERIA')->result();
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('Materia/associar_materias', $data);
 		}
 		
@@ -79,6 +85,7 @@
 
 			$this->db->update('MATERIA', $data);
 			$data['url'] = base_url();
+			$this->parser->parse('ajax', $data);
 			$this->parser->parse('telaAdm', $data);
 		}
 		

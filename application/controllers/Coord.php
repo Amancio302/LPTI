@@ -11,7 +11,7 @@
 			}
 		}	
 		
-		public function parametros(){
+		public function parametros($script = 0){
 			$data['url'] = base_url();
 			$tipo = $this->session->userdata('tipo') * 10;
 			
@@ -23,10 +23,10 @@
 			
 			$this->db->where($where);
 			$data['PARAMETRO'] = $this->db->get()->result();
-			print_r($data['PARAMETRO']);
-			$tipo += 25;
 			
-			$tipos += 25;
+			$tipo += 30;
+			
+			$tipos += 30;
 			
 			$this->db->select('*');
 			$this->db->from('PARAMETRO_DE_RISCO');
@@ -34,8 +34,9 @@
 			
 			$this->db->where($where);
 			$data['PARAMETROS'] = $this->db->get()->result();
-			print_r($data['PARAMETROS']);
-			$this->parser->parse('addParametro', $data);
+			$dat['Tipo'] = $this->session->userdata('tipo');
+			$this->parser->parse('ajaxCoord', $dat);
+			$this->parser->parse('Coordenador/addParametro', $data);
 		}
 		
 		public function parametro(){
@@ -51,7 +52,9 @@
 		public function criarParametro($tipo){
 			$data['url'] = base_url();
 			$data['Tipo'] = $tipo;
-			$this->parser->parse('insereParametro', $data);
+			$dat['Tipo'] = $this->session->userdata('tipo');
+			$this->parser->parse('ajaxCoord', $dat);
+			$this->parser->parse('Coordenador/insereParametro', $data);
 		}
 		
 		public function insereParametro(){
@@ -80,6 +83,10 @@
 					$this->db->insert('PARAMETRO_DE_RISCO', $data);
 				}
 			}
+			$data['url'] = base_url();
+			$data['Tipo'] = $this->session->userdata('tipo');
+			$this->parser->parse('ajaxCoord', $data);
+			$this->parser->parse('telaCoord', $data);
 		}
 		
 		public function editarParametro($id){
@@ -89,7 +96,8 @@
 			$data['PARAMETRO'] = $this->db->get()->result();
 			$data['url'] = base_url();
 			$data['Tipo'] = $this->session->userdata('tipo');
-			$this->parser->parse('editarParametro', $data);
+			$this->parser->parse('ajaxCoord', $data);
+			$this->parser->parse('Coordenador/editarParametro', $data);
 		}
 		
 		public function editaParametro(){
@@ -101,7 +109,6 @@
 			$this->db->from('PARAMETRO_DE_RISCO');
 			$this->db->where('PARAMETRO_DE_RISCO.idPARAMETRO_DE_RISCO', $id);
 			$this->db->update('PARAMETRO_DE_RISCO', $data);
-			redirect(base_url('coord/editarParametro/'.$id));
-		}
-		
+			redirect(base_url('coord/parametros/1'));
+		}	
 	}

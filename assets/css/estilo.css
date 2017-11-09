@@ -48,3 +48,32 @@ td{
 #all-right{
 	background-color: green;
 }
+
+#image{
+	max-width: 900px;
+	max-height: 900px;
+	width: 150px;
+	height: 150px;
+	padding: 15px;
+}
+
+#linha{
+	margin-top: 50px;
+}
+
+
+#data{
+	border-style: solid;
+	border-color: black;
+	height: 25px;
+}
+
+#data2{
+	border-style: solid;
+	border-color: black;
+	padding-right: 10px;
+}
+
+#data3{
+	margin-top: 25px;
+}
