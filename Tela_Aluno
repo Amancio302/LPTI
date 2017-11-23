@@ -1,0 +1,75 @@
+|		Foto		|       Matrícula       |          Nome       | |																						|
+|		Foto		|    Série    |    Curso    |    Modalidade   | |																						|
+																	|						GRÁFICO															|
+																	|																						|
+|		  |	1º Bimestre | 2º Bimestre |	3º Bimestre | 4º Bimestre | |																						|
+|		  | NOTA | FREQ | NOTA | FREQ | NOTA | FREQ | NOTA | FREQ | |																						|
+| Materia | Nota | Freq | Nota | Freq | Nota | Freq | Nota | Freq | |																						|
+| Materia | Nota | Freq | Nota | Freq | Nota | Freq | Nota | Freq | |																						|
+| Materia | Nota | Freq | Nota | Freq | Nota | Freq | Nota | Freq | |																						|
+| Materia | Nota | Freq | Nota | Freq | Nota | Freq | Nota | Freq | |																						|
+| Materia | Nota | Freq | Nota | Freq | Nota | Freq | Nota | Freq | |																						|
+| Materia | Nota | Freq | Nota | Freq | Nota | Freq | Nota | Freq | |																						|
+
+
+
+MATERIA.NOME, NOTA.BIMESTRE, FREQUENCIA.BIMESTRE, NOTA.NOTA, FREQUENCIA.FALTAS
+
+
+//SELECIONAR TODOS OS ALUNOS
+
+SELECT ALUNO.idALUNO, ALUNO.NOME AS ALUNO_NOME, TURMA.SERIE, CURSO.NOME AS CURSO_NOME, CURSO.MODALIDADE
+FROM ALUNO
+INNER JOIN TURMA_has_ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO
+INNER JOIN TURMA ON TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA
+INNER JOIN CURSO ON CURSO.idCURSO = TURMA.idCURSO
+
+$this->db->select('SELECT ALUNO.idALUNO, ALUNO.NOME AS ALUNO_NOME, TURMA.SERIE, CURSO.NOME AS CURSO_NOME, CURSO.MODALIDADE');
+$this->db->from('ALUNO')
+$this->db->join('TURMA_has_ALUNO', 'TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO', 'inner');
+$this->db->join('TURMA', 'TURMA.idTURMA = TURMA_has_ALUNO.TURMA_idTURMA', 'inner');
+$this->db->join('CURSO', 'CURSO.idCURSO = TURMA.idCURSO', 'inner');
+
+//SELECAO COMPLETA
+
+//SELECIONAR TODAS AS MATERIAS
+
+SELECT MATERIA.idMATERIA, MATERIA.NOME, TURMA_has_MATERIA.TURMA_idTURMA, TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.ANO
+FROM MATERIA
+INNER JOIN TURMA_has_MATERIA ON TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA
+
+$this->db->select('MATERIA.idMATERIA, MATERIA.NOME, TURMA_has_MATERIA.TURMA_idTURMA, TURMA_has_MATERIA.MATERIA_idMATERIA, TURMA_has_MATERIA.ANO');
+$this->db->from('MATERIA');
+$this->db->join('TURMA_has_MATERIA', 'TURMA_has_MATERIA.MATERIA_idMATERIA = MATERIA.idMATERIA', 'inner');
+
+//SELECAO COMPLETA
+
+//SELECIONAR TODAS AS NOTAS
+	
+SELECT NOTA.idALUNO, NOTA.idMATERIA, NOTA.NOTA, NOTA.BIMESTRE
+FROM NOTA
+
+$this->db->select('NOTA.idALUNO, NOTA.idMATERIA, NOTA.NOTA, NOTA.BIMESTRE');
+$this->db->from('NOTA');
+
+//SELECAO COMPLETA
+
+//SELECIONAR TODAS AS FREQUENCIAS
+
+SELECT FREQUENCIA.idALUNO, FREQUENCIA.idMATERIA, FREQUENCIA.FALTAS, FREQUENCIA.BIMESTRE
+FROM FREQUENCIA
+
+$this->db->select('FREQUENCIA.idALUNO, FREQUENCIA.idMATERIA, FREQUENCIA.FALTAS, FREQUENCIA.BIMESTRE');
+$this->db->from('FREQUENCIA');
+
+//SELECAO COMPLETA
+
+//SELECIONAR TODOS OS PARAMETROS DE RISCO
+
+SELECT PARAMETRO_DE_RISCO.FREQUENCIA, PARAMETRO_DE_RISCO.NOTA, PARAMETRO_DE_RISCO.MATERIAS, PARAMETRO_DE_RISCO.idTURMA
+FROM PARAMETRO_DE_RISCO
+
+$this->db->select('PARAMETRO_DE_RISCO.FREQUENCIA, PARAMETRO_DE_RISCO.NOTA, PARAMETRO_DE_RISCO.MATERIAS, PARAMETRO_DE_RISCO.idTURMA');
+$this->db->from('PARAMETRO_DE_RISCO');
+
+//SELECAO COMPLETA
