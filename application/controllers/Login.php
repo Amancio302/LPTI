@@ -8,8 +8,7 @@ class Login extends CI_Controller {
 		$this->load->library('session');
 	}
 
-	public function index()
-	{
+	public function index(){
 		$data['msg'] = '';
 		$data['url'] = base_url();
 		$data['modal'] = '';
@@ -54,9 +53,16 @@ class Login extends CI_Controller {
 		$this->load->library('session');
 		$data['url'] = base_url();
 		$data['modal'] = "";
+		$sql = "SELECT MATERIA.NOME,
+				AVG(NOTA.NOTA) AS 'SOMA'
+				FROM NOTA
+				INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+				GROUP BY MATERIA.NOME";
+		$valor = $this->db->query($sql)->result();
+					
 		$data['script1'] = 'window.onload = function () {
 			
-		var chart = new CanvasJS.Chart("chartContainer", {
+		var chart = new CanvasJS.Chart("Geral", {
 			animationEnabled: true,
 			
 			title:{
@@ -75,30 +81,16 @@ class Login extends CI_Controller {
 				name: "notas",
 				axisYType: "secondary",
 				color: "#014D65",
-				dataPoints: [
-					{ y: 88.6, label: "Artes" },
-					{ y: 79.1, label: "Biologia I" },
-					{ y: 75.2, label: "Biologia II" },
-					{ y: 96.2, label: "Filosofia" },
-					{ y: 88.5, label: "História I" },
-					{ y: 82.6, label: "História II" },
-					{ y: 79.9, label: "História III" },
-					{ y: 89.9, label: "Inglês I" },
-					{ y: 88.0, label: "Inglês II" },
-					{ y: 90.0, label: "Inglês III" },
-					{ y: 65.4, label: "Português I" },
-					{ y: 75.3, label: "Português II" },
-					{ y: 77.6, label: "Postuguês III" },
-					{ y: 85.1, label: "Física I" },
-					{ y: 82.5, label: "Física II" },
-					{ y: 79.9, label: "Física III" },
-					{ y: 82.1, label: "Geografia I" },
-					{ y: 77.7, label: "Geografia II" }
-				]
+				dataPoints: [';
+				foreach($valor as $medias)
+					$data['script1'] .= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
+				$data['script1'] = substr($data['script1'], 0, -1);
+				$data['script1'] .= ']
 			}]
 		});
 			chart.render();
 		}';
+		
 		$this->parser->parse('ajax', $data);
 		$this->parser->parse('telaAdm', $data);
 	}
