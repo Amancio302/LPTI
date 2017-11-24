@@ -64,6 +64,7 @@ class Login extends CI_Controller {
 			
 		var chart = new CanvasJS.Chart("Geral", {
 			animationEnabled: true,
+			exportEnabled: true,
 			
 			title:{
 				text:"Média Geral da Escola"

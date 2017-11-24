@@ -11,11 +11,57 @@ class Grafico extends CI_Controller {
 	public function mostrar(){
 		$graficos = $this->input->post('txt_grafs');
 		$qtd = count($graficos);
-		$scripts = 'window.onload = function () {';
+		$sql = "SELECT MATERIA.NOME,
+				AVG(NOTA.NOTA) AS 'SOMA'
+				FROM NOTA
+				INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+				GROUP BY MATERIA.NOME";
+		$valor = $this->db->query($sql)->result();
+		$scripts = 'window.onload = function () {
+		$("#1InfoInt").hide();
+		$("#2InfoInt").hide();
+		$("#3InfoInt").hide();
+		$("#1MecaInt").hide();
+		$("#2MecaInt").hide();
+		$("#3MecaInt").hide();
+		$("#1EdifInt").hide();
+		$("#2EdifInt").hide();
+		$("#3EdifInt").hide();
+		$("#1InfoSub").hide();
+		$("#2InfoSub").hide();
+		$("#1MecaSub").hide();
+		$("#2MecaSub").hide();
+		$("#1EdifSub").hide();
+		$("#2EdifSub").hide();
+		var chart = new CanvasJS.Chart("Geral", {
+			animationEnabled: true,
+			exportEnabled: true,
+			
+			title:{
+				text:"Média Geral da Escola"
+			},
+			axisX:{
+				interval: 1
+			},
+			axisY2:{
+				interlacedColor: "rgba(1,77,101,.2)",
+				gridColor: "rgba(1,77,101,.1)",
+				title: "Nota Média"
+			},
+			data: [{
+				type: "bar",
+				name: "notas",
+				axisYType: "secondary",
+				color: "#014D65",
+				dataPoints: [';
+				foreach($valor as $medias)
+					$scripts .= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
+				$scripts = substr($scripts, 0, -1);
+				$scripts .= ']
+			}]
+		});';
 		$i = 0;
 		foreach($graficos as $grafico){
-			
-			echo $grafico.br();
 			
 			if($grafico == 11){
 				$sala = '1 Informática Integrado';
@@ -78,7 +124,6 @@ class Grafico extends CI_Controller {
 				$id = '2EdifSub';
 			}
 			
-			echo $sala . " - " . $id .br();
 			$sql = 'SELECT MATERIA.NOME,
 					AVG(NOTA.NOTA) AS "SOMA"
 					FROM NOTA
@@ -88,11 +133,9 @@ class Grafico extends CI_Controller {
 					WHERE TURMA_has_ALUNO.TURMA_idTURMA = '. $grafico . ' 
 					GROUP BY MATERIA.NOME';
 			$valor = $this->db->query($sql)->result();
-			
-			print_r($valor);
-			echo br();
 			$scripts .= 'var chart' . $i . ' = new CanvasJS.Chart("' . $id . '", {
 			animationEnabled: true,
+			exportEnabled: true,
 			
 			title:{
 				text: "Gráfico - ' . $sala . '"
@@ -110,32 +153,27 @@ class Grafico extends CI_Controller {
 				name: "notas",
 				axisYType: "secondary",
 				color: "#014D65",
-				dataPoints: [';
+				dataPoints: [ ';
 			foreach($valor as $medias)
 				$scripts.= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
 			$scripts = substr($scripts, 0, -1);
 			$scripts .= ']
 					}]
 				});';
-			$data['script1'] = $scripts;
+			$scripts .= ' chart' . $i . '.render();';
+			$scripts .= '$("#' . $id . '").fadeIn();';
 			$i++;
-			
-			echo $scripts .br() . 'identificador' . br();
-			
-			print_r($data['script1']);
-			echo br();
 		}
 		
-		for($j = --$i; $j >= 0; $j--)
-			$data['script1'] .= ' chart' . $j . '.render();';
+		$data['script1'] = $scripts;
+		
+		$data['script1'] .= 'chart.render();';
 		
 		$data['script1'] .= '}';
 		
 		$data['msg'] = '';
 		$data['url'] = base_url();
 		$data['modal'] = '';
-		
-		echo $data['script1'];
 		
 		$this->parser->parse('ajax', $data);
 		$this->parser->parse('telaAdm', $data);

@@ -17,9 +17,6 @@
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
-    <script>
-		{script1}
-	</script>
 </head>
 
 <body>
