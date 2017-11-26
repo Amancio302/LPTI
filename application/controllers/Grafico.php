@@ -54,7 +54,7 @@ class Grafico extends CI_Controller {
 				name: "notas",
 				axisYType: "secondary",
 				color: "#014D65",
-				dataPoints: [';
+				dataPoints: [ ';
 				foreach($valor as $medias)
 					$scripts .= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
 				$scripts = substr($scripts, 0, -1);
@@ -62,109 +62,111 @@ class Grafico extends CI_Controller {
 			}]
 		});';
 		$i = 0;
-		foreach($graficos as $grafico){
-			
-			if($grafico == 11){
-				$sala = '1 Informática Integrado';
-				$id = '1InfoInt';
+		if($qtd != 0){
+			foreach($graficos as $grafico){
+				
+				if($grafico == 11){
+					$sala = '1 Informática Integrado';
+					$id = '1InfoInt';
+				}
+				else if($grafico == 12){
+					$sala = '2 Informática Integrado';
+					$id = '2InfoInt';
+				}
+				else if($grafico == 13){
+					$sala = '3 Informática Integrado';
+					$id = '3InfoInt';
+				}
+				else if($grafico == 21){
+					$sala = '1 Mecatrônica Integrado';
+					$id = '1MecaInt';
+				}
+				else if($grafico == 22){
+					$sala = '2 Mecatrônica Integrado';
+					$id = '2MecaInt';
+				}
+				else if($grafico == 23){
+					$sala = '3 Mecatrônica Integrado';
+					$id = '3MecaInt';
+				}
+				else if($grafico == 31){
+					$sala = '1 Edificações Integrado';;
+					$id = '1EdifInt';
+				}
+				else if($grafico == 32){
+					$sala = '2 Edificações Integrado';
+					$id = '2EdifInt';
+				}
+				else if($grafico == 33){
+					$sala = '3 Edificações Integrado';
+					$id = '3EdifInt';
+				}
+				else if($grafico == 41){
+					$sala = '1 Informática Subsequente';
+					$id = '1InfoSub';
+				}
+				else if($grafico == 42){
+					$sala = '2 Informática Subsequente';
+					$id = '2InfoSub';
+				}
+				else if($grafico == 51){
+					$sala = '1 Mecatrônica Subsequente';
+					$id = '1MecaSub';
+				}
+				else if($grafico == 52){
+					$sala = '2 Mecatrônica Subsequente';
+					$id = '2MecaSub';
+				}
+				else if($grafico == 61){
+					$sala = '1 Edificações Subsequente';
+					$id = '1EdifSub';
+				}
+				else if($grafico == 62){
+					$sala = '2 Edificações Subsequente';
+					$id = '2EdifSub';
+				}
+				
+				$sql = 'SELECT MATERIA.NOME,
+						AVG(NOTA.NOTA) AS "SOMA"
+						FROM NOTA
+						INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+						INNER JOIN ALUNO ON ALUNO.idALUNO = NOTA.idALUNO
+						INNER JOIN TURMA_has_ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO
+						WHERE TURMA_has_ALUNO.TURMA_idTURMA = '. $grafico . ' 
+						GROUP BY MATERIA.NOME';
+				$valor = $this->db->query($sql)->result();
+				$scripts .= 'var chart' . $i . ' = new CanvasJS.Chart("' . $id . '", {
+				animationEnabled: true,
+				exportEnabled: true,
+				height: 300,
+				
+				title:{
+					text: "Gráfico - ' . $sala . '"
+				},
+				axisX:{
+					interval: 1
+				},
+				axisY2:{
+					interlacedColor: "rgba(1,77,101,.2)",
+					gridColor: "rgba(1,77,101,.1)",
+					title: "Nota Média"
+				},
+				data: [{
+					type: "bar",
+					name: "notas",
+					axisYType: "secondary",
+					color: "#014D65",
+					dataPoints: [ ';
+				foreach($valor as $medias)
+					$scripts.= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
+				$scripts = substr($scripts, 0, -1);
+				$scripts .= ']
+						}]
+					});';
+				$scripts .= ' chart' . $i . '.render();';
+				$scripts .= '$("#' . $id . '").fadeIn();';
+				$i++;
 			}
-			else if($grafico == 12){
-				$sala = '2 Informática Integrado';
-				$id = '2InfoInt';
-			}
-			else if($grafico == 13){
-				$sala = '3 Informática Integrado';
-				$id = '3InfoInt';
-			}
-			else if($grafico == 21){
-				$sala = '1 Mecatrônica Integrado';
-				$id = '1MecaInt';
-			}
-			else if($grafico == 22){
-				$sala = '2 Mecatrônica Integrado';
-				$id = '2MecaInt';
-			}
-			else if($grafico == 23){
-				$sala = '3 Mecatrônica Integrado';
-				$id = '3MecaInt';
-			}
-			else if($grafico == 31){
-				$sala = '1 Edificações Integrado';;
-				$id = '1EdifInt';
-			}
-			else if($grafico == 32){
-				$sala = '2 Edificações Integrado';
-				$id = '2EdifInt';
-			}
-			else if($grafico == 33){
-				$sala = '3 Edificações Integrado';
-				$id = '3EdifInt';
-			}
-			else if($grafico == 41){
-				$sala = '1 Informática Subsequente';
-				$id = '1InfoSub';
-			}
-			else if($grafico == 42){
-				$sala = '2 Informática Subsequente';
-				$id = '2InfoSub';
-			}
-			else if($grafico == 51){
-				$sala = '1 Mecatrônica Subsequente';
-				$id = '1MecaSub';
-			}
-			else if($grafico == 52){
-				$sala = '2 Mecatrônica Subsequente';
-				$id = '2MecaSub';
-			}
-			else if($grafico == 61){
-				$sala = '1 Edificações Subsequente';
-				$id = '1EdifSub';
-			}
-			else if($grafico == 62){
-				$sala = '2 Edificações Subsequente';
-				$id = '2EdifSub';
-			}
-			
-			$sql = 'SELECT MATERIA.NOME,
-					AVG(NOTA.NOTA) AS "SOMA"
-					FROM NOTA
-					INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
-					INNER JOIN ALUNO ON ALUNO.idALUNO = NOTA.idALUNO
-					INNER JOIN TURMA_has_ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO
-					WHERE TURMA_has_ALUNO.TURMA_idTURMA = '. $grafico . ' 
-					GROUP BY MATERIA.NOME';
-			$valor = $this->db->query($sql)->result();
-			$scripts .= 'var chart' . $i . ' = new CanvasJS.Chart("' . $id . '", {
-			animationEnabled: true,
-			exportEnabled: true,
-			height: 300,
-			
-			title:{
-				text: "Gráfico - ' . $sala . '"
-			},
-			axisX:{
-				interval: 1
-			},
-			axisY2:{
-				interlacedColor: "rgba(1,77,101,.2)",
-				gridColor: "rgba(1,77,101,.1)",
-				title: "Nota Média"
-			},
-			data: [{
-				type: "bar",
-				name: "notas",
-				axisYType: "secondary",
-				color: "#014D65",
-				dataPoints: [ ';
-			foreach($valor as $medias)
-				$scripts.= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
-			$scripts = substr($scripts, 0, -1);
-			$scripts .= ']
-					}]
-				});';
-			$scripts .= ' chart' . $i . '.render();';
-			$scripts .= '$("#' . $id . '").fadeIn();';
-			$i++;
 		}
 		
 		$data['script1'] = $scripts;
@@ -180,5 +182,208 @@ class Grafico extends CI_Controller {
 		$this->parser->parse('ajax', $data);
 		$this->parser->parse('telaAdm', $data);
 	}
-
+	
+	public function mostrarCoord(){
+		$graficos = $this->input->post('txt_grafs');
+		$qtd = count($graficos);
+		$tipo = $this->session->userdata('tipo');
+		$this->load->library('session');
+		$data['nome'] = $this->session->userdata('nome');
+		$data['url'] = base_url();
+		$data['Tipo'] = $tipo;
+		$data['modal'] = "";
+		if($tipo != 6){
+		$sql = "SELECT MATERIA.NOME,
+				AVG(NOTA.NOTA) AS 'SOMA'
+				FROM NOTA
+				INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+				INNER JOIN TURMA_has_ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = NOTA.idALUNO
+				INNER JOIN TURMA_has_MATERIA ON TURMA_has_MATERIA.TURMA_idTURMA = TURMA_has_ALUNO.TURMA_idTURMA
+				WHERE TURMA_has_MATERIA.TURMA_idTURMA = " . $tipo . "1
+				OR TURMA_has_MATERIA.TURMA_idTURMA = " . $tipo . "2
+				OR TURMA_has_MATERIA.TURMA_idTURMA = " . $tipo . "3
+				GROUP BY MATERIA.NOME";
+		}
+		else{
+			$sql = "SELECT MATERIA.NOME,
+				AVG(NOTA.NOTA) AS 'SOMA'
+				FROM NOTA
+				INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+				INNER JOIN TURMA_has_MATERIA ON TURMA_has_MATERIA.MATERIA_idMATERIA = NOTA.idMATERIA
+				WHERE TURMA_has_MATERIA.MATERIA_idMATERIA = 11
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 12
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 13
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 21
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 22
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 23
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 31
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 32
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 33
+				GROUP BY MATERIA.NOME";
+		}
+		$valor = $this->db->query($sql)->result();
+		$scripts = 'window.onload = function () {
+		$("#1InfoInt").hide();
+		$("#2InfoInt").hide();
+		$("#3InfoInt").hide();
+		$("#1MecaInt").hide();
+		$("#2MecaInt").hide();
+		$("#3MecaInt").hide();
+		$("#1EdifInt").hide();
+		$("#2EdifInt").hide();
+		$("#3EdifInt").hide();
+		$("#1InfoSub").hide();
+		$("#2InfoSub").hide();
+		$("#1MecaSub").hide();
+		$("#2MecaSub").hide();
+		$("#1EdifSub").hide();
+		$("#2EdifSub").hide();
+		var chart = new CanvasJS.Chart("Geral", {
+			animationEnabled: true,
+			exportEnabled: true,
+			height: 300,
+			
+			title:{
+				text:"Média Geral do Curso"
+			},
+			axisX:{
+				interval: 1
+			},
+			axisY2:{
+				interlacedColor: "rgba(1,77,101,.2)",
+				gridColor: "rgba(1,77,101,.1)",
+				title: "Nota Média"
+			},
+			data: [{
+				type: "bar",
+				name: "notas",
+				axisYType: "secondary",
+				color: "#014D65",
+				dataPoints: [ ';
+				foreach($valor as $medias)
+					$scripts .= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
+				$scripts = substr($scripts, 0, -1);
+				$scripts .= ']
+			}]
+		});';
+		$i = 0;
+		if($qtd != 0){
+			foreach($graficos as $grafico){
+				if($grafico == 11){
+					$sala = '1 Informática Integrado';
+					$id = '1InfoInt';
+				}
+				else if($grafico == 12){
+					$sala = '2 Informática Integrado';
+					$id = '2InfoInt';
+				}
+				else if($grafico == 13){
+					$sala = '3 Informática Integrado';
+					$id = '3InfoInt';
+				}
+				else if($grafico == 21){
+					$sala = '1 Mecatrônica Integrado';
+					$id = '1MecaInt';
+				}
+				else if($grafico == 22){
+					$sala = '2 Mecatrônica Integrado';
+					$id = '2MecaInt';
+				}
+				else if($grafico == 23){
+					$sala = '3 Mecatrônica Integrado';
+					$id = '3MecaInt';
+				}
+				else if($grafico == 31){
+					$sala = '1 Edificações Integrado';;
+					$id = '1EdifInt';
+				}
+				else if($grafico == 32){
+					$sala = '2 Edificações Integrado';
+					$id = '2EdifInt';
+				}
+				else if($grafico == 33){
+					$sala = '3 Edificações Integrado';
+					$id = '3EdifInt';
+				}
+				else if($grafico == 41){
+					$sala = '1 Informática Subsequente';
+					$id = '1InfoSub';
+					}
+				else if($grafico == 42){
+					$sala = '2 Informática Subsequente';
+					$id = '2InfoSub';
+				}
+				else if($grafico == 51){
+					$sala = '1 Mecatrônica Subsequente';
+					$id = '1MecaSub';
+				}
+				else if($grafico == 52){
+					$sala = '2 Mecatrônica Subsequente';
+					$id = '2MecaSub';
+				}
+				else if($grafico == 61){
+					$sala = '1 Edificações Subsequente';
+					$id = '1EdifSub';
+				}
+				else if($grafico == 62){
+					$sala = '2 Edificações Subsequente';
+					$id = '2EdifSub';
+				}
+				
+				$sql = 'SELECT MATERIA.NOME,
+						AVG(NOTA.NOTA) AS "SOMA"
+						FROM NOTA
+						INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+						INNER JOIN ALUNO ON ALUNO.idALUNO = NOTA.idALUNO
+						INNER JOIN TURMA_has_ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = ALUNO.idALUNO
+						WHERE TURMA_has_ALUNO.TURMA_idTURMA = '. $grafico . ' 
+						GROUP BY MATERIA.NOME';
+				$valor = $this->db->query($sql)->result();
+				$scripts .= 'var chart' . $i . ' = new CanvasJS.Chart("' . $id . '", {
+				animationEnabled: true,
+				exportEnabled: true,
+				height: 300,
+				
+				title:{
+					text: "Gráfico - ' . $sala . '"
+				},
+				axisX:{
+					interval: 1
+				},
+				axisY2:{
+					interlacedColor: "rgba(1,77,101,.2)",
+					gridColor: "rgba(1,77,101,.1)",
+					title: "Nota Média"
+				},
+				data: [{
+					type: "bar",
+					name: "notas",
+					axisYType: "secondary",
+					color: "#014D65",
+					dataPoints: [ ';
+				foreach($valor as $medias)
+					$scripts.= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
+				$scripts = substr($scripts, 0, -1);
+				$scripts .= ']
+						}]
+					});';
+				$scripts .= ' chart' . $i . '.render();';
+				$scripts .= '$("#' . $id . '").fadeIn();';
+				$i++;
+			}
+		}
+	
+		$data['script1'] = $scripts;
+		
+		$data['script1'] .= 'chart.render();';
+		
+		$data['script1'] .= '}';
+		
+		$data['msg'] = '';
+		$data['url'] = base_url();
+		$data['modal'] = '';
+		
+		$this->parser->parse('ajaxCoord', $data);
+		$this->parser->parse('telaCoord', $data);
+	}
 }

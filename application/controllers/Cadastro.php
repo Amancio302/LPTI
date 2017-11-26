@@ -154,7 +154,7 @@
 							$('#erro-modal').modal('show');
 							});";
 		$data['url'] = base_url();
-		$this->parser->parse('ajaxCoord');
+		$this->parser->parse('ajaxCoord', $data);
 		$this->parser->parse('cadastro', $data);
 		}
 		}

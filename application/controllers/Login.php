@@ -118,10 +118,42 @@ class Login extends CI_Controller {
 		$data['url'] = base_url();
 		$data['Tipo'] = $tipo;
 		$data['modal'] = "";
-		$data['script1'] = 'window.onload = function () {
-			
-		var chart = new CanvasJS.Chart("chartContainer", {
+		if($tipo != 6){
+		$sql = "SELECT MATERIA.NOME,
+				AVG(NOTA.NOTA) AS 'SOMA'
+				FROM NOTA
+				INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+				INNER JOIN TURMA_has_ALUNO ON TURMA_has_ALUNO.ALUNO_idALUNO = NOTA.idALUNO
+				INNER JOIN TURMA_has_MATERIA ON TURMA_has_MATERIA.TURMA_idTURMA = TURMA_has_ALUNO.TURMA_idTURMA
+				WHERE TURMA_has_MATERIA.TURMA_idTURMA = " . $tipo . "1
+				OR TURMA_has_MATERIA.TURMA_idTURMA = " . $tipo . "2
+				OR TURMA_has_MATERIA.TURMA_idTURMA = " . $tipo . "3
+				GROUP BY MATERIA.NOME";
+		}
+		else{
+			$sql = "SELECT MATERIA.NOME,
+				AVG(NOTA.NOTA) AS 'SOMA'
+				FROM NOTA
+				INNER JOIN MATERIA ON MATERIA.idMATERIA = NOTA.idMATERIA
+				INNER JOIN TURMA_has_MATERIA ON TURMA_has_MATERIA.MATERIA_idMATERIA = NOTA.idMATERIA
+				WHERE TURMA_has_MATERIA.MATERIA_idMATERIA = 11
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 12
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 13
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 21
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 22
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 23
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 31
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 32
+				OR TURMA_has_MATERIA.MATERIA_idMATERIA = 33
+				GROUP BY MATERIA.NOME";
+		}
+		$valor = $this->db->query($sql)->result();
+		$scripts = 'window.onload = function () {
+		
+		var chart = new CanvasJS.Chart("Geral", {
 			animationEnabled: true,
+			exportEnabled: true,
+			height: 300,
 			
 			title:{
 				text:"Média Geral do Curso"
@@ -139,30 +171,20 @@ class Login extends CI_Controller {
 				name: "notas",
 				axisYType: "secondary",
 				color: "#014D65",
-				dataPoints: [
-					{ y: 88.6, label: "Artes" },
-					{ y: 79.1, label: "Biologia I" },
-					{ y: 75.2, label: "Biologia II" },
-					{ y: 96.2, label: "Filosofia" },
-					{ y: 88.5, label: "História I" },
-					{ y: 82.6, label: "História II" },
-					{ y: 79.9, label: "História III" },
-					{ y: 89.9, label: "Inglês I" },
-					{ y: 88.0, label: "Inglês II" },
-					{ y: 90.0, label: "Inglês III" },
-					{ y: 65.4, label: "Português I" },
-					{ y: 75.3, label: "Português II" },
-					{ y: 77.6, label: "Postuguês III" },
-					{ y: 85.1, label: "Física I" },
-					{ y: 82.5, label: "Física II" },
-					{ y: 79.9, label: "Física III" },
-					{ y: 82.1, label: "Geografia I" },
-					{ y: 77.7, label: "Geografia II" }
-				]
+				dataPoints: [ ';
+				foreach($valor as $medias)
+					$scripts .= '{ y: '. $medias->SOMA . ', label: "'. $medias->NOME .'"},';
+				$scripts = substr($scripts, 0, -1);
+				$scripts .= ']
 			}]
-		});
-			chart.render();
-		}';
+		});';
+		
+		$data['script1'] = $scripts;
+		
+		$data['script1'] .= 'chart.render();';
+		
+		$data['script1'] .= '}';
+		
 		$this->parser->parse('ajaxCoord', $data);
 		$this->parser->parse('telaCoord', $data);
 	}
@@ -198,6 +220,59 @@ class Login extends CI_Controller {
 		}
 		else{
 			$this->loginAsCoord($tipo);
+		}
+	}
+	
+	public function alterarSenha(){
+		$tipo = $this->session->userdata('tipo');
+		$data['url'] = base_url();
+		if($tipo == 0)
+			$this->parser->parse('ajax', $data);
+		if($tipo == 4)
+			$this->parser->parse('ajaxEst', $data);
+		if($tipo == 4)
+			$this->parser->parse('ajaxProf', $data);
+		else
+			$this->parser->parse('ajaxCoord', $data);
+		$this->parser->parse('mudaSenha', $data);
+	}
+	
+	public function novaSenha(){
+		$id = $this->session->userdata('id');
+		$senha = $this->input->post('txt_senha');
+		$this->db->select('*');
+		$this->db->from('USUARIO');
+		$this->db->where('USUARIO.idUSUARIO', $id);
+		$this->db->where('USUARIO.SENHA', sha1($senha));
+		$confirm = $this->db->get()->result();
+		if(count($confirm) != 1){
+			echo '<script type="text/javascript">alert("Senha inválida");
+						location.href = "http://localhost/LPTI/Login/alterarSenha/";</script>';
+		}
+		else{
+			$novaSenha = $this->input->post('txt_novasenha');
+			if($novaSenha != $this->input->post('txt_confirmarnovasenha')){
+				echo '<script type="text/javascript">alert("As senhas não são iguais");
+						location.href = "http://localhost/LPTI/Login/alterarSenha/";</script>';
+			}
+			else if($novaSenha == ' ' or $novaSenha == ''){
+				echo '<script type="text/javascript">alert("Senha em branco");
+						location.href = "http://localhost/LPTI/Login/alterarSenha/";</script>';
+			}
+			else{
+				$this->db->select('*');
+				$this->db->from('USUARIO');
+				$this->db->where('USUARIO.idUSUARIO', $id);
+				$data['SENHA'] = sha1($novaSenha);
+				if($this->db->update('USUARIO', $data)){
+					echo '<script type="text/javascript">alert("Senha alterada com sucesso");
+						location.href = "http://localhost/LPTI/Login/telaInicial/";</script>';
+				}
+				else{
+					echo '<script type="text/javascript">alert("Ocorreu um erro");
+						location.href = "http://localhost/LPTI/Login/alterarSenha/";</script>';
+				}
+			}
 		}
 	}
 

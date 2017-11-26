@@ -66,7 +66,7 @@
 				<?php echo form_submit("btn_busca", "Buscar", $btn).br().
 				form_close();
 				?>
-					<div class="row">
+				<div class="row">
 						<div id="1InfoInt" style="height: 300px; width: 100%;"></div>
 				  </div>
 				  <div class="row">
