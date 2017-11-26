@@ -36,6 +36,7 @@ class Grafico extends CI_Controller {
 		var chart = new CanvasJS.Chart("Geral", {
 			animationEnabled: true,
 			exportEnabled: true,
+			height: 300,
 			
 			title:{
 				text:"Média Geral da Escola"
@@ -77,7 +78,7 @@ class Grafico extends CI_Controller {
 			}
 			else if($grafico == 21){
 				$sala = '1 Mecatrônica Integrado';
-				$id = '1Mecaint';
+				$id = '1MecaInt';
 			}
 			else if($grafico == 22){
 				$sala = '2 Mecatrônica Integrado';
@@ -136,6 +137,7 @@ class Grafico extends CI_Controller {
 			$scripts .= 'var chart' . $i . ' = new CanvasJS.Chart("' . $id . '", {
 			animationEnabled: true,
 			exportEnabled: true,
+			height: 300,
 			
 			title:{
 				text: "Gráfico - ' . $sala . '"

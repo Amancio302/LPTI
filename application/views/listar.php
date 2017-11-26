@@ -5,8 +5,7 @@
             </div>
         </div>
     <div class="row" id="principal">
-		<div class="col-lg-12 col-md-12" id="btn">
-			<div>
+		<div class="col-lg-12 col-md-12 col" id="btn">
 			<?php
 				echo br()."<table id='myTable'>".
 				"<thead><tr>".
@@ -30,7 +29,6 @@
 				}
 				echo "</tbody></table>";
 			?>
-			</div>
 		</div>
 			</div>
 	</div>
@@ -52,6 +50,8 @@
                 "bRetrieve": true,
                 "bPaginate": true,
                 "bJQueryUI": false,
+                "autoWidth": true,
+				"responsive": true,
                 "sPaginationType": "full_numbers",
                 "oLanguage": {
                     "sUrl": "{url}assets/language/ptbr.txt"

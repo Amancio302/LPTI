@@ -20,7 +20,7 @@ class Login extends CI_Controller {
 		$login['SENHA'] = sha1($this->input->post('txt_senha'));
 		$data = $this->db->get_where('USUARIO', $login)->result_array();
 		if(count($data) > 0){
-			$array=array("login"=>true, "tipo"=>$data[0]['TIPO'], "bool"=>true);
+			$array=array("login"=>true, "tipo"=>$data[0]['TIPO'], "bool"=>true, "id"=>$data[0]['idUSUARIO'], "nome" => $data[0]['LOGIN']);
 			$this->session->set_userdata($array);
 			if($data[0]['TIPO'] == 0)
 				$this->loginAsAdm();
@@ -51,6 +51,7 @@ class Login extends CI_Controller {
 
 	public function loginAsAdm(){
 		$this->load->library('session');
+		$data['nome'] = $this->session->userdata('nome');
 		$data['url'] = base_url();
 		$data['modal'] = "";
 		$sql = "SELECT MATERIA.NOME,
@@ -61,10 +62,26 @@ class Login extends CI_Controller {
 		$valor = $this->db->query($sql)->result();
 					
 		$data['script1'] = 'window.onload = function () {
-			
+		$("#1InfoInt").hide();
+		$("#2InfoInt").hide();
+		$("#3InfoInt").hide();
+		$("#1MecaInt").hide();
+		$("#2MecaInt").hide();
+		$("#3MecaInt").hide();
+		$("#1EdifInt").hide();
+		$("#2EdifInt").hide();
+		$("#3EdifInt").hide();
+		$("#1InfoSub").hide();
+		$("#2InfoSub").hide();
+		$("#1MecaSub").hide();
+		$("#2MecaSub").hide();
+		$("#1EdifSub").hide();
+		$("#2EdifSub").hide();
 		var chart = new CanvasJS.Chart("Geral", {
+			height: 300,
 			animationEnabled: true,
 			exportEnabled: true,
+			zoomEnabled: true,
 			
 			title:{
 				text:"Média Geral da Escola"
@@ -91,13 +108,13 @@ class Login extends CI_Controller {
 		});
 			chart.render();
 		}';
-		
 		$this->parser->parse('ajax', $data);
 		$this->parser->parse('telaAdm', $data);
 	}
 
 	public function loginAsCoord($tipo){
 		$this->load->library('session');
+		$data['nome'] = $this->session->userdata('nome');
 		$data['url'] = base_url();
 		$data['Tipo'] = $tipo;
 		$data['modal'] = "";
@@ -152,6 +169,7 @@ class Login extends CI_Controller {
 
 	public function loginAsEst(){
 		$this->load->library('session');
+		$data['nome'] = $this->session->userdata('nome');
 		$data['url'] = base_url();
 		$data['modal'] = "";
 		$this->parser->parse('ajaxEst', $data);
@@ -169,68 +187,17 @@ class Login extends CI_Controller {
 	
 	public function telaInicial(){
 		$tipo = $this->session->userdata('tipo');
-		$data['url'] = base_url();
-		$data['Tipo'] = $tipo;
-		$data['script'] = 'window.onload = function () {
-			
-		var chart = new CanvasJS.Chart("chartContainer", {
-			animationEnabled: true,
-			
-			title:{
-				text:"Fortune 500 Companies by Country"
-			},
-			axisX:{
-				interval: 1
-			},
-			axisY2:{
-				interlacedColor: "rgba(1,77,101,.2)",
-				gridColor: "rgba(1,77,101,.1)",
-				title: "Number of Companies"
-			},
-			data: [{
-				type: "bar",
-				name: "companies",
-				axisYType: "secondary",
-				color: "#014D65",
-				dataPoints: [
-					{ y: 3, label: "Sweden" },
-					{ y: 7, label: "Taiwan" },
-					{ y: 5, label: "Russia" },
-					{ y: 9, label: "Spain" },
-					{ y: 7, label: "Brazil" },
-					{ y: 7, label: "India" },
-					{ y: 9, label: "Italy" },
-					{ y: 8, label: "Australia" },
-					{ y: 11, label: "Canada" },
-					{ y: 15, label: "South Korea" },
-					{ y: 12, label: "Netherlands" },
-					{ y: 15, label: "Switzerland" },
-					{ y: 25, label: "Britain" },
-					{ y: 28, label: "Germany" },
-					{ y: 29, label: "France" },
-					{ y: 52, label: "Japan" },
-					{ y: 103, label: "China" },
-					{ y: 134, label: "US" }
-				]
-			}]
-		});
-			chart.render();
-		}';
 		if($tipo == 0){
-			$this->parser->parse('ajax', $data);
-			$this->parser->parse('telaAdm', $data);
+			$this->loginAsAdm();
 		}
 		else if($tipo == 4){
-			$this->parser->parse('ajaxEst', $data);
-			$this->parser->parse('telaEst', $data);			
+			$this->loginAsEst();
 		}
 		else if($tipo == 5){
-			$this->parser->parse('ajaxProf', $data);
-			$this->parser->parse('telaProf', $data);
+			$this->loginAsProf($this->session->userdata('id'));
 		}
 		else{
-			$this->parser->parse('ajaxCoord', $data);
-			$this->parser->parse('telaCoord', $data);
+			$this->loginAsCoord($tipo);
 		}
 	}
 

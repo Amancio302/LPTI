@@ -12,7 +12,7 @@
 				  {script1}
 			  </script>
               <div class="row">
-					<div id="Geral" style="width: 100%; height: 300px; display: inline-block;"></div>
+					<div id="Geral" style="width: 100%; height: 300px; "></div>
               </div>
               <div class="row">
 				  <?php $atributos = array('name'=>'formulario_cadastro', 'id'=>'formulario_cadastro');
@@ -67,49 +67,49 @@
 				form_close();
 				?>
 					<div class="row">
-						<div id="1InfoInt" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="1InfoInt" style="height: 300px; width: 100%;"></div>
 				  </div>
 				  <div class="row">
-						<div id="2InfoInt" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="2InfoInt" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="3InfoInt" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="3InfoInt" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="1MecaInt" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="1MecaInt" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="2MecaInt" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="2MecaInt" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="3MecaInt" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="3MecaInt" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="1EdifInt" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="1EdifInt" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="2EdifInt" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="2EdifInt" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="3EdifInt" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="3EdifInt" style="width: 100%;  height: 300px;"></div>
 				  </div>
 				  <div class="row">
-						<div id="1InfoSub" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="1InfoSub" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="2InfoSub" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="2InfoSub" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="1MecaSub" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="1MecaSub" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="2MecaSub" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="2MecaSub" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="1EdifSub" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="1EdifSub" style="width: 100%;  height: 300px; "></div>
 				  </div>
 				  <div class="row">
-						<div id="2EdifSub" style="width: 100%;  height: 300px; display: inline-block;"></div>
+						<div id="2EdifSub" style="width: 100%;  height: 300px; "></div>
 				  </div>
 			</div>
 			  

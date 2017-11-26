@@ -17,6 +17,8 @@
     <link href="{url}assets/css/morris.css" rel="stylesheet">
     <link href="{url}assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="{url}assets/css/estilo.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://cdn.datatables.net/responsive/1.0.2/css/dataTables.responsive.css"/>
+    
 </head>
 
 <body>
@@ -36,12 +38,13 @@
                         <li><a href="{url}Login/alterarSenha"><i class="fa fa-sign-out fa-fw"></i> Alterar senha</a></li>
                     </ul>
                 </li>
+                <li> <?php echo $this->session->userdata('nome');?> </li>
             </ul>
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse" id="btn">
                     <ul class="nav" id="side-menu">
-                        <li>
+						<li>
                             <a href="{url}Login/telaInicial">Início</a>
                         </li>
                         <li>

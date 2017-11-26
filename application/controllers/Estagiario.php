@@ -357,11 +357,12 @@
                 $data['NOTAS'][$i] += $band->NOTA;
 			}
         }
+        $data['bimestre'] = $bimestre;
         $this->parser->parse('ajaxEst', $data);
         $this->parser->parse('Estagiario/editarNota', $data);
     }
     
-    public function alterarNota($id, $ano, $materia, $serie, $curso, $modalidade, $turma){
+    public function alterarNota($id, $ano, $materia, $serie, $curso, $modalidade, $turma, $bim){
 		$data['url'] = base_url();
 		
         $this->db->select('*');
@@ -370,6 +371,13 @@
         $data['aluno'] = $this->db->get()->result();
         
         $data['ano'] = $ano;
+        
+        if($curso == 'Inform%C3%A1tica')
+			$curso = 'Informática';
+        else if($curso == 'Edifica%C3%A7%C3%B5es')
+			$curso = 'Edificações';
+		else
+			$curso = 'Mecatrônica';
         
         $data['turma'] = $serie . ' ' . $curso . ' ' . $modalidade;
         
@@ -386,7 +394,18 @@
 		$this->db->where('NOTA.idMATERIA', $materia);$this->input->post('txt_freq');
 		$this->db->where('TURMA_has_MATERIA.ANO', $ano);
 		$this->db->where('TURMA_has_MATERIA.TURMA_idTURMA', $turma);
+		if($bim <= 4)
+			$this->db->where('NOTA.BIMESTRE', $bim);
+		else if($bim == 12){
+			$where = "NOTA.BIMESTRE = 1 OR NOTA.BIMESTRE = 2";
+			$this->db->where($where);
+		}
+		else if($bim == 34){
+			$where = "NOTA.BIMESTRE = 3 OR NOTA.BIMESTRE = 4";
+			$this->db->where($where);
+		}
         $data['nota'] = $this->db->get()->result();
+        
         $this->parser->parse('ajaxEst', $data);
         $this->parser->parse('Estagiario/alterarNota', $data);
 		

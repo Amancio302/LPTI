@@ -27,7 +27,7 @@
                             form_label("Nota: ", "txt_nota").br().
                             form_input('txt_nota', $nota[$i]->NOTA).br().
 							form_label("Bimestre: ", "txt_bimestre").br().
-                            form_input(array('name'=>'txt_bim', 'type'=>'number', 'min'=>1, 'max'=>4, 'value'=>1), $nota[$i]->BIMESTRE).br().br().
+                            form_input(array('name'=>'txt_bim', 'type'=>'number', 'min'=>1, 'max'=>4, 'value'=> $nota[$i]->BIMESTRE)).br().br().
                             form_submit("btn_cadastrar", "Alterar", $btn).
                             form_close();
 						}

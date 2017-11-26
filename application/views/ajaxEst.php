@@ -35,6 +35,7 @@
                         <li><a href="{url}Login/alterarSenha"><i class="fa fa-sign-out fa-fw"></i> Alterar senha</a></li>
                     </ul>
                 </li>
+                <li> <?php echo $this->session->userdata('nome');?> </li>
             </ul>
 
             <div class="navbar-default sidebar" role="navigation">
